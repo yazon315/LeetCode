@@ -26,7 +26,6 @@ Write a solution to find the ids of products that are both low fat and recyclabl
 Return the result table in any order.
 
 The result format is in the following example.
- 
 
 Example 1:
 
@@ -49,6 +48,7 @@ Output:
 | 3           |
 
 Explanation: Only products 1 and 3 are both low fat and recyclable.
+
 
 **Решение:**
 
@@ -75,14 +75,12 @@ Table: Customer
 In SQL, id is the primary key column for this table.
 Each row of this table indicates the id of a customer, their name, and the id of the customer who referred them.
  
-
 Find the names of the customer that are not referred by the customer with id = 2.
 
 Return the result table in any order.
 
 The result format is in the following example.
  
-
 Example 1:
 
 Input: 
@@ -105,6 +103,7 @@ Output:
 | Jane |
 | Bill |
 | Zack |
+
 
 **Решение:**
 
@@ -132,7 +131,6 @@ Table: World
 
 name is the primary key (column with unique values) for this table.
 Each row of this table gives information about the name of a country, the continent to which it belongs, its area, the population, and its GDP value.
- 
 
 A country is big if:
 
@@ -144,7 +142,6 @@ Return the result table in any order.
 
 The result format is in the following example.
  
-
 Example 1:
 
 Input: 
@@ -164,6 +161,7 @@ Output:
 |-------------|------------|---------|
 | Afghanistan | 25500100   | 652230  |
 | Algeria     | 37100000   | 2381741 |
+
 
 **Решение:**
 
@@ -198,7 +196,6 @@ Write a solution to find all the authors that viewed at least one of their own a
 Return the result table sorted by id in ascending order.
 
 The result format is in the following example.
- 
 
 Example 1:
 
@@ -221,6 +218,7 @@ Output:
 |------|
 | 4    |
 | 7    |
+
 
 **Решение:**
 
@@ -245,15 +243,12 @@ Table: Tweets
 
 tweet_id is the primary key (column with unique values) for this table.
 This table contains all the tweets in a social media app.
- 
 
 Write a solution to find the IDs of the invalid tweets. The tweet is invalid if the number of characters used in the content of the tweet is strictly greater than 15.
 
 Return the result table in any order.
 
 The result format is in the following example.
-
- 
 
 Example 1:
 
@@ -274,6 +269,7 @@ Output:
 Explanation: 
 Tweet 1 has length = 14. It is a valid tweet.
 Tweet 2 has length = 32. It is an invalid tweet.
+
 
 **Решение:**
 
@@ -300,7 +296,6 @@ Table: Employees
 
 id is the primary key (column with unique values) for this table.
 Each row of this table contains the id and the name of an employee in a company.
- 
 
 Table: EmployeeUNI
 
@@ -311,14 +306,12 @@ Table: EmployeeUNI
 
 (id, unique_id) is the primary key (combination of columns with unique values) for this table.
 Each row of this table contains the id and the corresponding unique id of an employee in the company.
- 
 
 Write a solution to show the unique ID of each user, If a user does not have a unique ID replace just show null.
 
 Return the result table in any order.
 
 The result format is in the following example.
- 
 
 Example 1:
 
@@ -357,6 +350,7 @@ The unique ID of Meir is 2.
 The unique ID of Winston is 3.
 The unique ID of Jonathan is 1.
 
+
 **Решение:**
 
 ```SQL
@@ -385,7 +379,6 @@ Table: Sales
 product_id is a foreign key (reference column) to Product table.
 Each row of this table shows a sale on the product product_id in a certain year.
 Note that the price is per unit.
- 
 
 Table: Product
 
@@ -396,14 +389,12 @@ Table: Product
 
 product_id is the primary key (column with unique values) of this table.
 Each row of this table indicates the product name of each product.
- 
 
 Write a solution to report the product_name, year, and price for each sale_id in the Sales table.
 
 Return the resulting table in any order.
 
 The result format is in the following example.
- 
 
 Example 1:
 
@@ -437,6 +428,7 @@ From sale_id = 1, we can conclude that Nokia was sold for 5000 in the year 2008.
 From sale_id = 2, we can conclude that Nokia was sold for 5000 in the year 2009.
 From sale_id = 7, we can conclude that Apple was sold for 9000 in the year 2011.
 
+
 **Решение:**
 
 ```SQL
@@ -459,7 +451,6 @@ Table: Visits
 
 visit_id is the column with unique values for this table.
 This table contains information about the customers who visited the mall.
- 
 
 Table: Transactions
 
@@ -471,14 +462,12 @@ Table: Transactions
 
 transaction_id is column with unique values for this table.
 This table contains information about the transactions made during the visit_id.
- 
 
 Write a solution to find the IDs of the users who visited without making any transactions and the number of times they made these types of visits.
 
 Return the result table sorted in any order.
 
 The result format is in the following example.
- 
 
 Example 1:
 
@@ -521,6 +510,7 @@ Customer with id = 54 visited the mall three times. During 2 visits they did not
 Customer with id = 96 visited the mall once and did not make any transactions.
 As we can see, users with IDs 30 and 96 visited the mall one time without making any transactions. Also, user 54 visited the mall twice and did not make any transactions.
 
+
 **Решение:**
 
 ```SQL
@@ -547,14 +537,12 @@ Table: Weather
 
 In SQL, id is the primary key for this table.
 This table contains information about the temperature on a certain day.
- 
 
 Find all dates' Id with higher temperatures compared to its previous dates (yesterday).
 
 Return the result table in any order.
 
 The result format is in the following example.
- 
 
 Example 1:
 
@@ -578,6 +566,7 @@ Output:
 Explanation: 
 In 2015-01-02, the temperature was higher than the previous day (10 -> 25).
 In 2015-01-04, the temperature was higher than the previous day (20 -> 30).
+
 
 **Решение:**
 
@@ -615,7 +604,6 @@ activity_type is an ENUM (category) of type ('start', 'end').
 timestamp is a float representing the current time in seconds.
 'start' means the machine starts the process at the given timestamp and 'end' means the machine ends the process at the given timestamp.
 The 'start' timestamp will always be before the 'end' timestamp for every (machine_id, process_id) pair.
- 
 
 There is a factory website that has several machines each running the same number of processes. Write a solution to find the average time each machine takes to complete a process.
 
@@ -626,7 +614,6 @@ The resulting table should have the machine_id along with the average time as pr
 Return the result table in any order.
 
 The result format is in the following example.
- 
 
 Example 1:
 
@@ -661,6 +648,7 @@ There are 3 machines running 2 processes each.
 Machine 0's average time is ((1.520 - 0.712) + (4.120 - 3.140)) / 2 = 0.894
 Machine 1's average time is ((1.550 - 0.550) + (1.420 - 0.430)) / 2 = 0.995
 Machine 2's average time is ((4.512 - 4.100) + (5.000 - 2.500)) / 2 = 1.456
+
 
 **Решение:**
 
@@ -699,7 +687,6 @@ Table: Employee
 
 empId is the primary key column for this table.
 Each row of this table indicates the name and the ID of an employee in addition to their salary and the id of their manager.
- 
 
 Table: Bonus
 
@@ -711,14 +698,12 @@ Table: Bonus
 empId is the primary key column for this table.
 empId is a foreign key to empId from the Employee table.
 Each row of this table contains the id of an employee and their respective bonus.
- 
 
 Write an SQL query to report the name and bonus amount of each employee with a bonus less than 1000.
 
 Return the result table in any order.
 
 The query result format is in the following example.
- 
 
 Example 1:
 
@@ -747,6 +732,7 @@ Output:
 | John | null  |
 | Dan  | 500   |
 
+
 **Решение:**
 
 ```SQL
@@ -771,7 +757,6 @@ Table: Students
 
 student_id is the primary key (column with unique values) for this table.
 Each row of this table contains the ID and the name of one student in the school.
- 
 
 Table: Subjects
 
@@ -781,7 +766,6 @@ Table: Subjects
 
 subject_name is the primary key (column with unique values) for this table.
 Each row of this table contains the name of one subject in the school.
- 
 
 Table: Examinations
 
@@ -793,14 +777,12 @@ Table: Examinations
 There is no primary key (column with unique values) for this table. It may contain duplicates.
 Each student from the Students table takes every course from the Subjects table.
 Each row of this table indicates that a student with ID student_id attended the exam of subject_name.
- 
 
 Write a solution to find the number of times each student attended each exam.
 
 Return the result table ordered by student_id and subject_name.
 
 The result format is in the following example.
- 
 
 Example 1:
 
@@ -862,6 +844,7 @@ Bob attended the Math exam 1 time, the Programming exam 1 time, and did not atte
 Alex did not attend any exams.
 John attended the Math exam 1 time, the Physics exam 1 time, and the Programming exam 1 time.
 
+
 **Решение:**
 
 ```SQL
@@ -883,103 +866,642 @@ FROM Students AS st
     CROSS JOIN Subjects AS s
     LEFT JOIN e ON st.student_id = e.student_id
                 AND s.subject_name = e.subject_name
-ORDER BY st.student_id, s.subject_name
+ORDER BY st.student_id, s.subject_name;
 ```
 
 
 ### Задача 13
 
-****
+**570. Managers with at Least 5 Direct Reports**
+
+Table: Employee
+
+| Column Name | Type    |
+|-------------|---------|
+| id          | int     |
+| name        | varchar |
+| department  | varchar |
+| managerId   | int     |
+
+id is the primary key (column with unique values) for this table.
+Each row of this table indicates the name of an employee, their department, and the id of their manager.
+If managerId is null, then the employee does not have a manager.
+No employee will be the manager of themself.
+
+Write a solution to find managers with at least five direct reports.
+
+Return the result table in any order.
+
+The result format is in the following example.
+
+Example 1:
+
+Input: 
+Employee table:
+
+| id  | name  | department | managerId |
+|-----|-------|------------|-----------|
+| 101 | John  | A          | None      |
+| 102 | Dan   | A          | 101       |
+| 103 | James | A          | 101       |
+| 104 | Amy   | A          | 101       |
+| 105 | Anne  | A          | 101       |
+| 106 | Ron   | B          | 101       |
+
+Output: 
+
+| name |
+|------|
+| John |
 
 
 **Решение:**
 
 ```SQL
-
+SELECT e.name
+FROM (
+        SELECT  managerId,
+                COUNT(id) AS count
+        FROM Employee
+        GROUP BY managerId
+        HAVING count >= 5
+     ) AS temp
+    JOIN Employee AS e ON temp.managerId = e.id;
 ```
 
 
 ### Задача 14
 
-****
+**1934. Confirmation Rate**
+
+Table: Signups
+
+| Column Name    | Type     |
+|----------------|----------|
+| user_id        | int      |
+| time_stamp     | datetime |
+
+user_id is the primary key for this table.
+Each row contains information about the signup time for the user with ID user_id.
+
+Table: Confirmations
+
+| Column Name    | Type     |
+|----------------|----------|
+| user_id        | int      |
+| time_stamp     | datetime |
+| action         | ENUM     |
+
+(user_id, time_stamp) is the primary key for this table.
+user_id is a foreign key with a reference to the Signups table.
+action is an ENUM of the type ('confirmed', 'timeout')
+Each row of this table indicates that the user with ID user_id requested a confirmation message at time_stamp and that confirmation message was either confirmed ('confirmed') or expired without confirming ('timeout').
+
+The confirmation rate of a user is the number of 'confirmed' messages divided by the total number of requested confirmation messages. The confirmation rate of a user that did not request any confirmation messages is 0. Round the confirmation rate to two decimal places.
+
+Write an SQL query to find the confirmation rate of each user.
+
+Return the result table in any order.
+
+The query result format is in the following example.
+
+Example 1:
+
+Input: 
+Signups table:
+
+| user_id | time_stamp          |
+|---------|---------------------|
+| 3       | 2020-03-21 10:16:13 |
+| 7       | 2020-01-04 13:57:59 |
+| 2       | 2020-07-29 23:09:44 |
+| 6       | 2020-12-09 10:39:37 |
+
+Confirmations table:
+
+| user_id | time_stamp          | action    |
+|---------|---------------------|-----------|
+| 3       | 2021-01-06 03:30:46 | timeout   |
+| 3       | 2021-07-14 14:00:00 | timeout   |
+| 7       | 2021-06-12 11:57:29 | confirmed |
+| 7       | 2021-06-13 12:58:28 | confirmed |
+| 7       | 2021-06-14 13:59:27 | confirmed |
+| 2       | 2021-01-22 00:00:00 | confirmed |
+| 2       | 2021-02-28 23:59:59 | timeout   |
+
+Output: 
+
+| user_id | confirmation_rate |
+|---------|-------------------|
+| 6       | 0.00              |
+| 3       | 0.00              |
+| 7       | 1.00              |
+| 2       | 0.50              |
+
+Explanation: 
+User 6 did not request any confirmation messages. The confirmation rate is 0.
+User 3 made 2 requests and both timed out. The confirmation rate is 0.
+User 7 made 3 requests and all were confirmed. The confirmation rate is 1.
+User 2 made 2 requests where one was confirmed and the other timed out. The confirmation rate is 1 / 2 = 0.5.
 
 
 **Решение:**
 
 ```SQL
+WITH
+con AS(
+  SELECT  user_id,
+          COUNT(user_id) AS count_con
+  FROM Confirmations
+  WHERE action = 'confirmed'
+  GROUP BY user_id),
+tot AS(
+  SELECT  user_id,
+          COUNT(user_id) AS count_tot
+  FROM Confirmations
+  GROUP BY user_id)
 
+SELECT  sig.user_id,
+        CASE
+          WHEN count_tot IS NULL THEN 0
+          WHEN count_con IS NULL THEN 0
+          ELSE ROUND((count_con / count_tot), 2)
+        END AS confirmation_rate
+FROM Signups AS sig
+  LEFT JOIN con ON sig.user_id=con.user_id
+  LEFT JOIN tot ON sig.user_id=tot.user_id;
 ```
+
+
+
+## Basic Aggregate Functions
 
 
 ### Задача 15
 
-****
+**620. Not Boring Movies**
 
+Table: Cinema
+
+| Column Name    | Type     |
+|----------------|----------|
+| id             | int      |
+| movie          | varchar  |
+| description    | varchar  |
+| rating         | float    |
+
+id is the primary key (column with unique values) for this table.
+Each row contains information about the name of a movie, its genre, and its rating.
+rating is a 2 decimal places float in the range [0, 10]
+
+Write a solution to report the movies with an odd-numbered ID and a description that is not "boring".
+
+Return the result table ordered by rating in descending order.
+
+The result format is in the following example.
+
+Example 1:
+
+Input: 
+Cinema table:
+
+| id | movie      | description | rating |
+|----|------------|-------------|--------|
+| 1  | War        | great 3D    | 8.9    |
+| 2  | Science    | fiction     | 8.5    |
+| 3  | irish      | boring      | 6.2    |
+| 4  | Ice song   | Fantacy     | 8.6    |
+| 5  | House card | Interesting | 9.1    |
+
+Output: 
+
+| id | movie      | description | rating |
+|----|------------|-------------|--------|
+| 5  | House card | Interesting | 9.1    |
+| 1  | War        | great 3D    | 8.9    |
+
+Explanation: 
+We have three movies with odd-numbered IDs: 1, 3, and 5. The movie with ID = 3 is boring so we do not include it in the answer.
 
 **Решение:**
 
 ```SQL
-
+SELECT id, movie, description, rating
+FROM Cinema
+WHERE (id % 2) != 0
+  AND description != 'boring'
+ORDER BY rating DESC;
 ```
 
 
 ### Задача 16
 
-****
+**1251. Average Selling Price**
 
+Table: Prices
+
+| Column Name   | Type    |
+|---------------|---------|
+| product_id    | int     |
+| start_date    | date    |
+| end_date      | date    |
+| price         | int     |
+
+(product_id, start_date, end_date) is the primary key for this table.
+Each row of this table indicates the price of the product_id in the period from start_date to end_date.
+For each product_id there will be no two overlapping periods. That means there will be no two intersecting periods for the same product_id.
+
+Table: UnitsSold
+
+| Column Name   | Type    |
+|---------------|---------|
+| product_id    | int     |
+| purchase_date | date    |
+| units         | int     |
+
+There is no primary key for this table, it may contain duplicates.
+Each row of this table indicates the date, units, and product_id of each product sold. 
+
+Write an SQL query to find the average selling price for each product. average_price should be rounded to 2 decimal places.
+
+Return the result table in any order.
+
+The query result format is in the following example.
+
+Example 1:
+
+Input: 
+Prices table:
+
+| product_id | start_date | end_date   | price  |
+|------------|------------|------------|--------|
+| 1          | 2019-02-17 | 2019-02-28 | 5      |
+| 1          | 2019-03-01 | 2019-03-22 | 20     |
+| 2          | 2019-02-01 | 2019-02-20 | 15     |
+| 2          | 2019-02-21 | 2019-03-31 | 30     |
+
+UnitsSold table:
+
+| product_id | purchase_date | units |
+|------------|---------------|-------|
+| 1          | 2019-02-25    | 100   |
+| 1          | 2019-03-01    | 15    |
+| 2          | 2019-02-10    | 200   |
+| 2          | 2019-03-22    | 30    |
+
+Output: 
+
+| product_id | average_price |
+|------------|---------------|
+| 1          | 6.96          |
+| 2          | 16.96         |
+
+Explanation: 
+Average selling price = Total Price of Product / Number of products sold.
+Average selling price for product 1 = ((100 * 5) + (15 * 20)) / 115 = 6.96
+Average selling price for product 2 = ((200 * 15) + (30 * 30)) / 230 = 16.96
 
 **Решение:**
 
 ```SQL
-
+SELECT  product_id,
+        ROUND(SUM(temp.total) / SUM(temp.units), 2) AS average_price
+FROM (
+        SELECT  p.product_id,
+                (price * units) AS total,
+                units
+        FROM Prices AS p
+            JOIN UnitsSold AS u ON p.product_id=u.product_id
+                                AND p.start_date <= u.purchase_date
+                                AND p.end_date >= u.purchase_date
+     ) AS temp
+GROUP BY product_id;
 ```
 
 
 ### Задача 17
 
-****
+**1075. Project Employees I**
 
+Table: Project
+
+| Column Name | Type    |
+|-------------|---------|
+| project_id  | int     |
+| employee_id | int     |
+
+(project_id, employee_id) is the primary key of this table.
+employee_id is a foreign key to Employee table.
+Each row of this table indicates that the employee with employee_id is working on the project with project_id.
+
+Table: Employee
+
+| Column Name      | Type    |
+|------------------|---------|
+| employee_id      | int     |
+| name             | varchar |
+| experience_years | int     |
+
+employee_id is the primary key of this table. It's guaranteed that experience_years is not NULL.
+Each row of this table contains information about one employee.
+
+Write an SQL query that reports the average experience years of all the employees for each project, rounded to 2 digits.
+
+Return the result table in any order.
+
+The query result format is in the following example.
+
+Example 1:
+
+Input: 
+Project table:
+
+| project_id  | employee_id |
+|-------------|-------------|
+| 1           | 1           |
+| 1           | 2           |
+| 1           | 3           |
+| 2           | 1           |
+| 2           | 4           |
+
+Employee table:
+
+| employee_id | name   | experience_years |
+|-------------|--------|------------------|
+| 1           | Khaled | 3                |
+| 2           | Ali    | 2                |
+| 3           | John   | 1                |
+| 4           | Doe    | 2                |
+
+Output: 
+
+| project_id  | average_years |
+|-------------|---------------|
+| 1           | 2.00          |
+| 2           | 2.50          |
+
+Explanation: The average experience years for the first project is (3 + 2 + 1) / 3 = 2.00 and for the second project is (3 + 2) / 2 = 2.50
 
 **Решение:**
 
 ```SQL
-
+SELECT  project_id,
+        ROUND(AVG(experience_years), 2) AS average_years
+FROM Project AS p
+    JOIN Employee AS e ON p.employee_id=e.employee_id
+GROUP BY project_id;
 ```
 
 
 ### Задача 18
 
-****
+**1633. Percentage of Users Attended a Contest**
 
+Table: Users
+
+| Column Name | Type    |
+|-------------|---------|
+| user_id     | int     |
+| user_name   | varchar |
+
+user_id is the primary key (column with unique values) for this table.
+Each row of this table contains the name and the id of a user.
+
+Table: Register
+
+| Column Name | Type    |
+|-------------|---------|
+| contest_id  | int     |
+| user_id     | int     |
+
+(contest_id, user_id) is the primary key (combination of columns with unique values) for this table.
+Each row of this table contains the id of a user and the contest they registered into.
+
+Write a solution to find the percentage of the users registered in each contest rounded to two decimals.
+
+Return the result table ordered by percentage in descending order. In case of a tie, order it by contest_id in ascending order.
+
+The result format is in the following example.
+
+Example 1:
+
+Input: 
+Users table:
+
+| user_id | user_name |
+|---------|-----------|
+| 6       | Alice     |
+| 2       | Bob       |
+| 7       | Alex      |
+
+Register table:
+
+| contest_id | user_id |
+|------------|---------|
+| 215        | 6       |
+| 209        | 2       |
+| 208        | 2       |
+| 210        | 6       |
+| 208        | 6       |
+| 209        | 7       |
+| 209        | 6       |
+| 215        | 7       |
+| 208        | 7       |
+| 210        | 2       |
+| 207        | 2       |
+| 210        | 7       |
+
+Output: 
+
+| contest_id | percentage |
+|------------|------------|
+| 208        | 100.0      |
+| 209        | 100.0      |
+| 210        | 100.0      |
+| 215        | 66.67      |
+| 207        | 33.33      |
+
+Explanation: 
+All the users registered in contests 208, 209, and 210. The percentage is 100% and we sort them in the answer table by contest_id in ascending order.
+Alice and Alex registered in contest 215 and the percentage is ((2/3) * 100) = 66.67%
+Bob registered in contest 207 and the percentage is ((1/3) * 100) = 33.33%
 
 **Решение:**
 
 ```SQL
-
+SELECT  contest_id,
+        ROUND(100 * COUNT(user_id) / (SELECT COUNT(user_id) FROM Users), 2) AS percentage
+FROM Register
+GROUP BY contest_id
+ORDER BY percentage DESC, contest_id;
 ```
 
 
 ### Задача 19
 
-****
+**1211. Queries Quality and Percentage**
 
+Table: Queries
+
+| Column Name | Type    |
+|-------------|---------|
+| query_name  | varchar |
+| result      | varchar |
+| position    | int     |
+| rating      | int     |
+
+This table may have duplicate rows.
+This table contains information collected from some queries on a database.
+The position column has a value from 1 to 500.
+The rating column has a value from 1 to 5. Query with rating less than 3 is a poor query.
+
+We define query quality as:
+
+The average of the ratio between query rating and its position.
+
+We also define poor query percentage as:
+
+The percentage of all queries with rating less than 3.
+
+Write a solution to find each query_name, the quality and poor_query_percentage.
+
+Both quality and poor_query_percentage should be rounded to 2 decimal places.
+
+Return the result table in any order.
+
+The result format is in the following example.
+
+Example 1:
+
+Input: 
+Queries table:
+
+| query_name | result            | position | rating |
+|------------|-------------------|----------|--------|
+| Dog        | Golden Retriever  | 1        | 5      |
+| Dog        | German Shepherd   | 2        | 5      |
+| Dog        | Mule              | 200      | 1      |
+| Cat        | Shirazi           | 5        | 2      |
+| Cat        | Siamese           | 3        | 3      |
+| Cat        | Sphynx            | 7        | 4      |
+
+Output: 
+
+| query_name | quality | poor_query_percentage |
+|------------|---------|-----------------------|
+| Dog        | 2.50    | 33.33                 |
+| Cat        | 0.66    | 33.33                 |
+
+Explanation: 
+Dog queries quality is ((5 / 1) + (5 / 2) + (1 / 200)) / 3 = 2.50
+Dog queries poor_ query_percentage is (1 / 3) * 100 = 33.33
+
+Cat queries quality equals ((2 / 5) + (3 / 3) + (4 / 7)) / 3 = 0.66
+Cat queries poor_ query_percentage is (1 / 3) * 100 = 33.33
 
 **Решение:**
 
 ```SQL
+WITH
+p AS(
+SELECT  query_name,
+        COUNT(rating) AS poor
+FROM Queries
+WHERE rating < 3
+GROUP BY query_name)
 
+SELECT  q.query_name,
+        ROUND(AVG(rating / position), 2) AS quality,
+        CASE
+          WHEN poor IS NULL THEN 0
+          ELSE ROUND(100 * poor / COUNT(rating), 2)
+        END AS poor_query_percentage
+FROM Queries AS q
+  LEFT JOIN p ON q.query_name=p.query_name
+GROUP BY query_name;
 ```
 
 
 ### Задача 20
 
-****
+**1193. Monthly Transactions I**
 
+Table: Transactions
+
+| Column Name   | Type    |
+|---------------|---------|
+| id            | int     |
+| country       | varchar |
+| state         | enum    |
+| amount        | int     |
+| trans_date    | date    |
+
+id is the primary key of this table.
+The table has information about incoming transactions.
+The state column is an enum of type ["approved", "declined"].
+
+Write an SQL query to find for each month and country, the number of transactions and their total amount, the number of approved transactions and their total amount.
+
+Return the result table in any order.
+
+The query result format is in the following example.
+
+Example 1:
+
+Input: 
+Transactions table:
+
+| id   | country | state    | amount | trans_date |
+|------|---------|----------|--------|------------|
+| 121  | US      | approved | 1000   | 2018-12-18 |
+| 122  | US      | declined | 2000   | 2018-12-19 |
+| 123  | US      | approved | 2000   | 2019-01-01 |
+| 124  | DE      | approved | 2000   | 2019-01-07 |
+
+Output: 
+
+| month    | country | trans_count | approved_count | trans_total_amount | approved_total_amount |
+|----------|---------|-------------|----------------|--------------------|-----------------------|
+| 2018-12  | US      | 2           | 1              | 3000               | 1000                  |
+| 2019-01  | US      | 1           | 1              | 2000               | 2000                  |
+| 2019-01  | DE      | 1           | 1              | 2000               | 2000                  |
 
 **Решение:**
 
 ```SQL
+WITH
+a AS(
+  SELECT  INSERT(EXTRACT(YEAR_MONTH FROM trans_date), 5, 0, '-') AS month,
+          country,
+          COUNT(trans_date) AS approved_count,
+          SUM(amount) AS approved_total_amount
+  FROM Transactions
+  WHERE state = 'approved'
+  GROUP BY country, EXTRACT(YEAR_MONTH FROM trans_date)),
 
+t AS(
+  SELECT  INSERT(EXTRACT(YEAR_MONTH FROM trans_date), 5, 0, '-') AS month,
+          country,
+          COUNT(trans_date) AS trans_count,
+          SUM(amount) AS trans_total_amount
+  FROM Transactions
+  GROUP BY country, EXTRACT(YEAR_MONTH FROM trans_date))
+
+SELECT  t.month,
+        t.country,
+        trans_count,
+        CASE
+          WHEN approved_count IS NULL THEN 0
+          ELSE approved_count
+        END AS approved_count,
+        trans_total_amount,
+        CASE
+          WHEN approved_total_amount IS NULL THEN 0
+          ELSE approved_total_amount
+        END AS approved_total_amount
+FROM t
+  LEFT JOIN a ON t.country=a.country
+              AND t.month=a.month;
 ```
 
 
