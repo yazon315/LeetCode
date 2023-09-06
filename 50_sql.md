@@ -1507,49 +1507,261 @@ FROM t
 
 ### Задача 21
 
-****
+**1174. Immediate Food Delivery II**
 
+Table: Delivery
+
+| Column Name                 | Type    |
+|-----------------------------|---------|
+| delivery_id                 | int     |
+| customer_id                 | int     |
+| order_date                  | date    |
+| customer_pref_delivery_date | date    |
+
+delivery_id is the column of unique values of this table.
+The table holds information about food delivery to customers that make orders at some date and specify a preferred delivery date (on the same order date or after it).
+
+If the customer's preferred delivery date is the same as the order date, then the order is called immediate; otherwise, it is called scheduled.
+
+The first order of a customer is the order with the earliest order date that the customer made. It is guaranteed that a customer has precisely one first order.
+
+Write a solution to find the percentage of immediate orders in the first orders of all customers, rounded to 2 decimal places.
+
+The result format is in the following example.
+
+Example 1:
+
+Input: 
+Delivery table:
+
+| delivery_id | customer_id | order_date | customer_pref_delivery_date |
+|-------------|-------------|------------|-----------------------------|
+| 1           | 1           | 2019-08-01 | 2019-08-02                  |
+| 2           | 2           | 2019-08-02 | 2019-08-02                  |
+| 3           | 1           | 2019-08-11 | 2019-08-12                  |
+| 4           | 3           | 2019-08-24 | 2019-08-24                  |
+| 5           | 3           | 2019-08-21 | 2019-08-22                  |
+| 6           | 2           | 2019-08-11 | 2019-08-13                  |
+| 7           | 4           | 2019-08-09 | 2019-08-09                  |
+
+Output: 
+
+| immediate_percentage |
+|----------------------|
+| 50.00                |
+
+Explanation: 
+The customer id 1 has a first order with delivery id 1 and it is scheduled.
+The customer id 2 has a first order with delivery id 2 and it is immediate.
+The customer id 3 has a first order with delivery id 5 and it is scheduled.
+The customer id 4 has a first order with delivery id 7 and it is immediate.
+Hence, half the customers have immediate first orders.
 
 **Решение:**
 
 ```SQL
-
+SELECT ROUND(COUNT(*) * 100 / (SELECT COUNT(DISTINCT customer_id) FROM Delivery), 2) AS immediate_percentage
+FROM (SELECT  customer_id,
+              order_date,
+              customer_pref_delivery_date,
+              MIN(order_date) OVER(PARTITION BY customer_id) AS first_date
+      FROM Delivery) AS temp
+WHERE order_date=first_date
+  AND customer_pref_delivery_date=order_date
 ```
 
 
 ### Задача 22
 
-****
+**550. Game Play Analysis IV**
 
+Table: Activity
+
+| Column Name  | Type    |
+|--------------|---------|
+| player_id    | int     |
+| device_id    | int     |
+| event_date   | date    |
+| games_played | int     |
+
+(player_id, event_date) is the primary key (combination of columns with unique values) of this table.
+This table shows the activity of players of some games.
+Each row is a record of a player who logged in and played a number of games (possibly 0) before logging out on someday using some device.
+
+Write a solution to report the fraction of players that logged in again on the day after the day they first logged in, rounded to 2 decimal places. In other words, you need to count the number of players that logged in for at least two consecutive days starting from their first login date, then divide that number by the total number of players.
+
+The result format is in the following example.
+
+Example 1:
+
+Input: 
+Activity table:
+
+| player_id | device_id | event_date | games_played |
+|-----------|-----------|------------|--------------|
+| 1         | 2         | 2016-03-01 | 5            |
+| 1         | 2         | 2016-03-02 | 6            |
+| 2         | 3         | 2017-06-25 | 1            |
+| 3         | 1         | 2016-03-02 | 0            |
+| 3         | 4         | 2018-07-03 | 5            |
+
+Output: 
+
+| fraction  |
+|-----------|
+| 0.33      |
+
+Explanation: 
+Only the player with id 1 logged back in after the first day he had logged in so the answer is 1/3 = 0.33
 
 **Решение:**
 
 ```SQL
+-- вариант 1
+SELECT ROUND(COUNT(player_id) / (SELECT COUNT(DISTINCT player_id) FROM Activity), 2) AS fraction
+FROM (SELECT  player_id,
+              event_date,
+              MIN(event_date) OVER(PARTITION BY player_id) AS first_login
+      FROM Activity) AS temp
+WHERE DATEDIFF(event_date, first_login) = 1;
 
+--вариант 2
+SELECT ROUND(SUM(two_consecutive_days) / COUNT(DISTINCT player_id), 2) AS fraction
+FROM (SELECT  player_id,
+              event_date,
+              DATEDIFF(event_date, MIN(event_date) OVER(PARTITION BY player_id)) = 1 AS two_consecutive_days
+      FROM Activity) AS temp;
 ```
+
+
+
+## Sorting and Grouping
 
 
 ### Задача 23
 
-****
+**2356. Number of Unique Subjects Taught by Each Teacher**
 
+Table: Teacher
+
+| Column Name | Type |
+|-------------|------|
+| teacher_id  | int  |
+| subject_id  | int  |
+| dept_id     | int  |
+
+(subject_id, dept_id) is the primary key (combinations of columns with unique values) of this table.
+Each row in this table indicates that the teacher with teacher_id teaches the subject subject_id in the department dept_id.
+
+Write a solution to calculate the number of unique subjects each teacher teaches in the university.
+
+Return the result table in any order.
+
+The result format is shown in the following example.
+
+Example 1:
+
+Input: 
+Teacher table:
+
+| teacher_id | subject_id | dept_id |
+|------------|------------|---------|
+| 1          | 2          | 3       |
+| 1          | 2          | 4       |
+| 1          | 3          | 3       |
+| 2          | 1          | 1       |
+| 2          | 2          | 1       |
+| 2          | 3          | 1       |
+| 2          | 4          | 1       |
+
+Output:  
+
+| teacher_id | cnt |
+|------------|-----|
+| 1          | 2   |
+| 2          | 4   |
+
+Explanation: 
+Teacher 1:
+  - They teach subject 2 in departments 3 and 4.
+  - They teach subject 3 in department 3.
+Teacher 2:
+  - They teach subject 1 in department 1.
+  - They teach subject 2 in department 1.
+  - They teach subject 3 in department 1.
+  - They teach subject 4 in department 1.
 
 **Решение:**
 
 ```SQL
-
+SELECT  teacher_id,
+        COUNT(DISTINCT subject_id) AS cnt
+FROM Teacher
+GROUP BY teacher_id;
 ```
 
 
 ### Задача 24
 
-****
+**1141. User Activity for the Past 30 Days I**
 
+Table: Activity
+
+| Column Name   | Type    |
+|---------------|---------|
+| user_id       | int     |
+| session_id    | int     |
+| activity_date | date    |
+| activity_type | enum    |
+
+This table may have duplicate rows.
+The activity_type column is an ENUM (category) of type ('open_session', 'end_session', 'scroll_down', 'send_message').
+The table shows the user activities for a social media website. 
+Note that each session belongs to exactly one user.
+
+Write a solution to find the daily active user count for a period of 30 days ending 2019-07-27 inclusively. A user was active on someday if they made at least one activity on that day.
+
+Return the result table in any order.
+
+The result format is in the following example.
+
+Example 1:
+
+Input: 
+Activity table:
+
+| user_id | session_id | activity_date | activity_type |
+|---------|------------|---------------|---------------|
+| 1       | 1          | 2019-07-20    | open_session  |
+| 1       | 1          | 2019-07-20    | scroll_down   |
+| 1       | 1          | 2019-07-20    | end_session   |
+| 2       | 4          | 2019-07-20    | open_session  |
+| 2       | 4          | 2019-07-21    | send_message  |
+| 2       | 4          | 2019-07-21    | end_session   |
+| 3       | 2          | 2019-07-21    | open_session  |
+| 3       | 2          | 2019-07-21    | send_message  |
+| 3       | 2          | 2019-07-21    | end_session   |
+| 4       | 3          | 2019-06-25    | open_session  |
+| 4       | 3          | 2019-06-25    | end_session   |
+
+Output: 
+
+| day        | active_users |
+|------------|--------------|
+| 2019-07-20 | 2            |
+| 2019-07-21 | 2            |
+
+Explanation: Note that we do not care about days with zero active users.
 
 **Решение:**
 
 ```SQL
-
+SELECT  activity_date AS day,
+        COUNT(DISTINCT user_id) AS active_users
+FROM Activity
+WHERE activity_date > DATE_SUB('2019-07-27', INTERVAL 30 DAY)
+  AND activity_date <= '2019-07-27'
+GROUP BY activity_date;
 ```
 
 
