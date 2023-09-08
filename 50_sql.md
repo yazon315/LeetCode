@@ -1767,97 +1767,580 @@ GROUP BY activity_date;
 
 ### Задача 25
 
-****
+**1070. Product Sales Analysis III**
 
+Table: Sales
+
+| Column Name | Type  |
+|-------------|-------|
+| sale_id     | int   |
+| product_id  | int   |
+| year        | int   |
+| quantity    | int   |
+| price       | int   |
+
+(sale_id, year) is the primary key (combination of columns with unique values) of this table.
+product_id is a foreign key (reference column) to Product table.
+Each row of this table shows a sale on the product product_id in a certain year.
+Note that the price is per unit.
+
+Table: Product
+
+| Column Name  | Type    |
+|--------------|---------|
+| product_id   | int     |
+| product_name | varchar |
+
+product_id is the primary key (column with unique values) of this table.
+Each row of this table indicates the product name of each product.
+
+Write a solution to select the product id, year, quantity, and price for the first year of every product sold.
+
+Return the resulting table in any order.
+
+The result format is in the following example.
+
+Example 1:
+
+Input: 
+Sales table:
+
+| sale_id | product_id | year | quantity | price |
+|---------|------------|------|----------|-------|
+| 1       | 100        | 2008 | 10       | 5000  |
+| 2       | 100        | 2009 | 12       | 5000  |
+| 7       | 200        | 2011 | 15       | 9000  |
+
+Product table:
+
+| product_id | product_name |
+|------------|--------------|
+| 100        | Nokia        |
+| 200        | Apple        |
+| 300        | Samsung      |
+
+Output: 
+
+| product_id | first_year | quantity | price |
+|------------|------------|----------|-------|
+| 100        | 2008       | 10       | 5000  |
+| 200        | 2011       | 15       | 9000  |
 
 **Решение:**
 
 ```SQL
-
+SELECT  product_id,
+        first_year,
+        quantity,
+        price
+FROM(SELECT product_id,
+            year,
+            quantity,
+            price,
+            MIN(year) OVER(PARTITION BY product_id) AS first_year
+     FROM Sales) AS temp
+WHERE year = first_year;
 ```
 
 
 ### Задача 26
 
-****
+**596. Classes More Than 5 Students**
 
+Table: Courses
+
+| Column Name | Type    |
+|-------------|---------|
+| student     | varchar |
+| class       | varchar |
+
+(student, class) is the primary key (combination of columns with unique values) for this table.
+Each row of this table indicates the name of a student and the class in which they are enrolled.
+
+Write a solution to find all the classes that have at least five students.
+
+Return the result table in any order.
+
+The result format is in the following example.
+
+Example 1:
+
+Input: 
+Courses table:
+
+| student | class    |
+|---------|----------|
+| A       | Math     |
+| B       | English  |
+| C       | Math     |
+| D       | Biology  |
+| E       | Math     |
+| F       | Computer |
+| G       | Math     |
+| H       | Math     |
+| I       | Math     |
+
+Output: 
+
+| class   |
+|---------|
+| Math    |
+
+Explanation: 
+- Math has 6 students, so we include it.
+- English has 1 student, so we do not include it.
+- Biology has 1 student, so we do not include it.
+- Computer has 1 student, so we do not include it.
 
 **Решение:**
 
 ```SQL
-
+SELECT  class
+FROM Courses
+GROUP BY class
+HAVING COUNT(student) >= 5;
 ```
 
 
 ### Задача 27
 
-****
+**1729. Find Followers Count**
 
+Table: Followers
+
+| Column Name | Type |
+|-------------|------|
+| user_id     | int  |
+| follower_id | int  |
+
+(user_id, follower_id) is the primary key (combination of columns with unique values) for this table.
+This table contains the IDs of a user and a follower in a social media app where the follower follows the user.
+
+Write a solution that will, for each user, return the number of followers.
+
+Return the result table ordered by user_id in ascending order.
+
+The result format is in the following example.
+
+Example 1:
+
+Input: 
+Followers table:
+
+| user_id | follower_id |
+|---------|-------------|
+| 0       | 1           |
+| 1       | 0           |
+| 2       | 0           |
+| 2       | 1           |
+
+Output: 
+
+| user_id | followers_count|
+|---------|----------------|
+| 0       | 1              |
+| 1       | 1              |
+| 2       | 2              |
+
+Explanation: 
+The followers of 0 are {1}
+The followers of 1 are {0}
+The followers of 2 are {0,1}
 
 **Решение:**
 
 ```SQL
-
+SELECT  user_id,
+        COUNT(follower_id) AS followers_count
+FROM Followers
+GROUP BY user_id
+ORDER BY user_id;
 ```
 
 
 ### Задача 28
 
-****
+**619. Biggest Single Number**
 
+Table: MyNumbers
+
+| Column Name | Type |
+|-------------|------|
+| num         | int  |
+
+This table may contain duplicates (In other words, there is no primary key for this table in SQL).
+Each row of this table contains an integer.
+
+A single number is a number that appeared only once in the MyNumbers table.
+
+Find the largest single number. If there is no single number, report null.
+
+The result format is in the following example.
+
+Example 1:
+
+Input: 
+MyNumbers table:
+
+| num |
+|-----|
+| 8   |
+| 8   |
+| 3   |
+| 3   |
+| 1   |
+| 4   |
+| 5   |
+| 6   |
+
+Output: 
+
+| num |
+|-----|
+| 6   |
+
+Explanation: The single numbers are 1, 4, 5, and 6.
+Since 6 is the largest single number, we return it.
+Example 2:
+
+Input: 
+MyNumbers table:
+
+| num |
+|-----|
+| 8   |
+| 8   |
+| 7   |
+| 7   |
+| 3   |
+| 3   |
+| 3   |
+
+Output: 
+
+| num  |
+|------|
+| null |
+
+Explanation: There are no single numbers in the input table so we return null.
 
 **Решение:**
 
 ```SQL
-
+SELECT MAX(num) AS num
+FROM (SELECT  num
+      FROM MyNumbers
+      GROUP BY num
+      HAVING COUNT(num) = 1) AS temp;
 ```
 
 
 ### Задача 29
 
-****
+**1045. Customers Who Bought All Products**
 
+Table: Customer
+
+| Column Name | Type    |
+|-------------|---------|
+| customer_id | int     |
+| product_key | int     |
+
+This table may contain duplicates rows. 
+customer_id is not NULL.
+product_key is a foreign key (reference column) to Product table.
+
+Table: Product
+
+| Column Name | Type    |
+|-------------|---------|
+| product_key | int     |
+
+product_key is the primary key (column with unique values) for this table.
+
+Write a solution to report the customer ids from the Customer table that bought all the products in the Product table.
+
+Return the result table in any order.
+
+The result format is in the following example.
+
+Example 1:
+
+Input: 
+Customer table:
+
+| customer_id | product_key |
+|-------------|-------------|
+| 1           | 5           |
+| 2           | 6           |
+| 3           | 5           |
+| 3           | 6           |
+| 1           | 6           |
+
+Product table:
+
+| product_key |
+|-------------|
+| 5           |
+| 6           |
+
+Output: 
+
+| customer_id |
+|-------------|
+| 1           |
+| 3           |
+
+Explanation: 
+The customers who bought all the products (5 and 6) are customers with IDs 1 and 3.
 
 **Решение:**
 
 ```SQL
+-- вариант 1 (сверяет только по количеству продуктов)
+SELECT customer_id
+FROM Customer
+GROUP BY customer_id
+HAVING COUNT(DISTINCT product_key) = (SELECT COUNT(*) FROM Product);
 
+-- вариант 2
+WITH
+t1 AS(
+SELECT *
+FROM (SELECT DISTINCT customer_id FROM Customer) AS c
+    CROSS JOIN Product AS p
+),
+t2 AS(
+SELECT *
+FROM Customer
+GROUP BY customer_id, product_key
+)
+
+SELECT DISTINCT customer_id
+FROM Customer
+WHERE customer_id NOT IN(SELECT DISTINCT t1.customer_id
+                         FROM t1
+                            LEFT JOIN t2 ON t1.customer_id=t2.customer_id
+                                        AND t1.product_key=t2.product_key
+                         WHERE t2.customer_id IS NULL);
 ```
+
+
+## Advanced Select and Joins
 
 
 ### Задача 30
 
-****
+**1731. The Number of Employees Which Report to Each Employee**
 
+Table: Employees
+
+| Column Name | Type     |
+|-------------|----------|
+| employee_id | int      |
+| name        | varchar  |
+| reports_to  | int      |
+| age         | int      |
+
+employee_id is the primary key for this table.
+This table contains information about the employees and the id of the manager they report to. Some employees do not report to anyone (reports_to is null). 
+
+For this problem, we will consider a manager an employee who has at least 1 other employee reporting to them.
+
+Write an SQL query to report the ids and the names of all managers, the number of employees who report directly to them, and the average age of the reports rounded to the nearest integer.
+
+Return the result table ordered by employee_id.
+
+The query result format is in the following example.
+
+Example 1:
+
+Input: 
+Employees table:
+
+| employee_id | name    | reports_to | age |
+|-------------|---------|------------|-----|
+| 9           | Hercy   | null       | 43  |
+| 6           | Alice   | 9          | 41  |
+| 4           | Bob     | 9          | 36  |
+| 2           | Winston | null       | 37  |
+
+Output: 
+
+| employee_id | name  | reports_count | average_age |
+|-------------|-------|---------------|-------------|
+| 9           | Hercy | 2             | 39          |
+
+Explanation: Hercy has 2 people report directly to him, Alice and Bob. Their average age is (41+36)/2 = 38.5, which is 39 after rounding it to the nearest integer.
 
 **Решение:**
 
 ```SQL
+WITH
+t1 AS(
+SELECT  reports_to AS employee_id,
+        COUNT(employee_id) AS reports_count,
+        ROUND(AVG(age)) AS average_age
+FROM Employees
+WHERE reports_to IS NOT NULL
+GROUP BY reports_to
+)
 
+SELECT  t1.employee_id,
+        e.name,
+        t1.reports_count,
+        t1.average_age
+FROM t1
+  JOIN Employees AS e ON t1.employee_id=e.employee_id
+ORDER BY t1.employee_id;
 ```
 
 
 ### Задача 31
 
-****
+**1789. Primary Department for Each Employee**
 
+Table: Employee
+
+| Column Name   |  Type   |
+|---------------|---------|
+| employee_id   | int     |
+| department_id | int     |
+| primary_flag  | varchar |
+
+(employee_id, department_id) is the primary key (combination of columns with unique values) for this table.
+employee_id is the id of the employee.
+department_id is the id of the department to which the employee belongs.
+primary_flag is an ENUM (category) of type ('Y', 'N'). If the flag is 'Y', the department is the primary department for the employee. If the flag is 'N', the department is not the primary.
+
+Employees can belong to multiple departments. When the employee joins other departments, they need to decide which department is their primary department. Note that when an employee belongs to only one department, their primary column is 'N'.
+
+Write a solution to report all the employees with their primary department. For employees who belong to one department, report their only department.
+
+Return the result table in any order.
+
+The result format is in the following example.
+
+Example 1:
+
+Input: 
+Employee table:
+
+| employee_id | department_id | primary_flag |
+|-------------|---------------|--------------|
+| 1           | 1             | N            |
+| 2           | 1             | Y            |
+| 2           | 2             | N            |
+| 3           | 3             | N            |
+| 4           | 2             | N            |
+| 4           | 3             | Y            |
+| 4           | 4             | N            |
+
+Output: 
+
+| employee_id | department_id |
+|-------------|---------------|
+| 1           | 1             |
+| 2           | 1             |
+| 3           | 3             |
+| 4           | 3             |
+
+Explanation: 
+- The Primary department for employee 1 is 1.
+- The Primary department for employee 2 is 1.
+- The Primary department for employee 3 is 3.
+- The Primary department for employee 4 is 3.
 
 **Решение:**
 
 ```SQL
+-- вариант 1
+SELECT  employee_id,
+        department_id
+FROM (SELECT  *,
+              COUNT(department_id) OVER(PARTITION BY employee_id) AS count
+      FROM Employee) AS temp
+WHERE (count > 1 AND primary_flag = 'Y')
+    OR count = 1;
 
+-- вариант 2
+WITH
+t AS (
+SELECT  employee_id,
+        department_id,
+        COUNT(employee_id) AS count
+FROM Employee
+GROUP BY employee_id)
+
+SELECT  employee_id,
+        department_id
+FROM t
+WHERE count = 1
+UNION
+SELECT  employee_id,
+        department_id
+FROM Employee
+WHERE primary_flag = 'Y';
 ```
 
 
 ### Задача 32
 
-****
+**610. Triangle Judgement**
 
+Table: Triangle
+
+| Column Name | Type |
+|-------------|------|
+| x           | int  |
+| y           | int  |
+| z           | int  |
+
+In SQL, (x, y, z) is the primary key column for this table.
+Each row of this table contains the lengths of three line segments.
+
+Report for every three line segments whether they can form a triangle.
+
+Return the result table in any order.
+
+The result format is in the following example.
+
+Example 1:
+
+Input: 
+Triangle table:
+
+| x  | y  | z  |
+|----|----|----|
+| 13 | 15 | 30 |
+| 10 | 20 | 15 |
+
+Output: 
+
+| x  | y  | z  | triangle |
+|----|----|----|----------|
+| 13 | 15 | 30 | No       |
+| 10 | 20 | 15 | Yes      |
 
 **Решение:**
 
 ```SQL
-
+SELECT  *,
+        CASE
+          WHEN (x >= y) and (x >= z) THEN CASE
+                                            WHEN (y + z) > x THEN 'Yes'
+                                            ELSE 'No'
+                                          END
+          WHEN (y >= z) THEN  CASE
+                                WHEN (x + z) > y THEN 'Yes'
+                                ELSE 'No'
+                              END
+          ELSE  CASE
+                  WHEN (x + y) > z THEN 'Yes'
+                  ELSE 'No'
+                END
+        END AS triangle
+FROM Triangle
 ```
 
 
