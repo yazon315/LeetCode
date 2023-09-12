@@ -1625,6 +1625,7 @@ FROM (SELECT  player_id,
       FROM Activity) AS temp
 WHERE DATEDIFF(event_date, first_login) = 1;
 
+
 --вариант 2
 SELECT ROUND(SUM(two_consecutive_days) / COUNT(DISTINCT player_id), 2) AS fraction
 FROM (SELECT  player_id,
@@ -2103,6 +2104,7 @@ FROM Customer
 GROUP BY customer_id
 HAVING COUNT(DISTINCT product_key) = (SELECT COUNT(*) FROM Product);
 
+
 -- вариант 2
 WITH
 t1 AS(
@@ -2263,6 +2265,7 @@ FROM (SELECT  *,
 WHERE (count > 1 AND primary_flag = 'Y')
     OR count = 1;
 
+
 -- вариант 2
 WITH
 t AS (
@@ -2346,97 +2349,623 @@ FROM Triangle
 
 ### Задача 33
 
-****
+**180. Consecutive Numbers**
 
+Table: Logs
+
+| Column Name | Type    |
+|-------------|---------|
+| id          | int     |
+| num         | varchar |
+
+In SQL, id is the primary key for this table.
+id is an autoincrement column.
+
+Find all numbers that appear at least three times consecutively.
+
+Return the result table in any order.
+
+The result format is in the following example.
+
+Example 1:
+
+Input: 
+Logs table:
+
+| id | num |
+|----|-----|
+| 1  | 1   |
+| 2  | 1   |
+| 3  | 1   |
+| 4  | 2   |
+| 5  | 1   |
+| 6  | 2   |
+| 7  | 2   |
+
+Output: 
+
+| ConsecutiveNums |
+|-----------------|
+| 1               |
+
+Explanation: 1 is the only number that appears consecutively for at least three times.
 
 **Решение:**
 
 ```SQL
-
+SELECT DISTINCT num AS ConsecutiveNums
+FROM (SELECT num
+             , LEAD(num, 1) OVER() AS num2
+             , LEAD(num, 2) OVER() AS num3
+      FROM Logs) AS temp
+WHERE num2 = num
+  AND num3 = num;
 ```
 
 
 ### Задача 34
 
-****
+**1164. Product Price at a Given Date**
 
+Table: Products
+
+| Column Name   | Type    |
+|---------------|---------|
+| product_id    | int     |
+| new_price     | int     |
+| change_date   | date    |
+
+(product_id, change_date) is the primary key of this table.
+Each row of this table indicates that the price of some product was changed to a new price at some date.
+
+Write an SQL query to find the prices of all products on 2019-08-16. Assume the price of all products before any change is 10.
+
+Return the result table in any order.
+
+The query result format is in the following example.
+
+Example 1:
+
+Input: 
+Products table:
+
+| product_id | new_price | change_date |
+|------------|-----------|-------------|
+| 1          | 20        | 2019-08-14  |
+| 2          | 50        | 2019-08-14  |
+| 1          | 30        | 2019-08-15  |
+| 1          | 35        | 2019-08-16  |
+| 2          | 65        | 2019-08-17  |
+| 3          | 20        | 2019-08-18  |
+
+Output: 
+
+| product_id | price |
+|------------|-------|
+| 2          | 50    |
+| 1          | 35    |
+| 3          | 10    |
 
 **Решение:**
 
 ```SQL
+-- вариант 1
+WITH
+lc AS(
+SELECT product_id
+      , MAX(change_date) AS last_change
+FROM Products
+WHERE change_date <= '2019-08-16'
+GROUP BY product_id)
 
+SELECT p.product_id
+      , CASE
+          WHEN new_price IS NULL THEN 10
+          ELSE new_price
+        END AS price
+FROM (SELECT DISTINCT product_id FROM Products) AS p
+    LEFT JOIN lc ON p.product_id=lc.product_id
+    LEFT JOIN Products AS pr ON p.product_id=pr.product_id
+                            AND lc.last_change=pr.change_date;
+
+
+--вариант 2
+WITH
+lc AS(
+    SELECT *
+        , MAX(change_date) OVER(PARTITION BY product_id) AS last_change
+    FROM Products
+    WHERE change_date <= '2019-08-16')
+
+SELECT p.product_id
+     , COALESCE(new_price, 10) AS price
+FROM (SELECT DISTINCT product_id FROM Products) AS p
+    LEFT JOIN lc ON p.product_id=lc.product_id
+WHERE change_date = last_change
+    OR new_price IS NULL;
 ```
 
 
 ### Задача 35
 
-****
+**1204. Last Person to Fit in the Bus**
 
+Table: Queue
+
+| Column Name | Type    |
+|-------------|---------|
+| person_id   | int     |
+| person_name | varchar |
+| weight      | int     |
+| turn        | int     |
+
+person_id column contains unique values.
+This table has the information about all people waiting for a bus.
+The person_id and turn columns will contain all numbers from 1 to n, where n is the number of rows in the table.
+turn determines the order of which the people will board the bus, where turn=1 denotes the first person to board and turn=n denotes the last person to board.
+weight is the weight of the person in kilograms.
+
+There is a queue of people waiting to board a bus. However, the bus has a weight limit of 1000 kilograms, so there may be some people who cannot board.
+
+Write a solution to find the person_name of the last person that can fit on the bus without exceeding the weight limit. The test cases are generated such that the first person does not exceed the weight limit.
+
+The result format is in the following example.
+
+Example 1:
+
+Input: 
+Queue table:
+
+| person_id | person_name | weight | turn |
+|-----------|-------------|--------|------|
+| 5         | Alice       | 250    | 1    |
+| 4         | Bob         | 175    | 5    |
+| 3         | Alex        | 350    | 2    |
+| 6         | John Cena   | 400    | 3    |
+| 1         | Winston     | 500    | 6    |
+| 2         | Marie       | 200    | 4    |
+
+Output: 
+
+| person_name |
+|-------------|
+| John Cena   |
+
+Explanation: The folowing table is ordered by the turn for simplicity.
+
+| Turn | ID | Name      | Weight | Total Weight |
+|------|----|-----------|--------|--------------|
+| 1    | 5  | Alice     | 250    | 250          |
+| 2    | 3  | Alex      | 350    | 600          |
+| 3    | 6  | John Cena | 400    | 1000         | (last person to board)
+| 4    | 2  | Marie     | 200    | 1200         | (cannot board)
+| 5    | 4  | Bob       | 175    | ___          |
+| 6    | 1  | Winston   | 500    | ___          |
 
 **Решение:**
 
 ```SQL
-
+SELECT person_name
+FROM (
+     SELECT person_name
+          , turn
+          , SUM(weight) OVER(ORDER BY turn) AS sum
+     FROM Queue) AS temp
+WHERE sum <= 1000
+ORDER BY turn DESC
+LIMIT 1;
 ```
 
 
 ### Задача 36
 
-****
+**1907. Count Salary Categories**
 
+Table: Accounts
+
+| Column Name | Type |
+|-------------|------|
+| account_id  | int  |
+| income      | int  |
+
+account_id is the primary key (column with unique values) for this table.
+Each row contains information about the monthly income for one bank account.
+
+Write a solution to calculate the number of bank accounts for each salary category. The salary categories are:
+
+"Low Salary": All the salaries strictly less than $20000.
+"Average Salary": All the salaries in the inclusive range [$20000, $50000].
+"High Salary": All the salaries strictly greater than $50000.
+The result table must contain all three categories. If there are no accounts in a category, return 0.
+
+Return the result table in any order.
+
+The result format is in the following example.
+
+Example 1:
+
+Input: 
+Accounts table:
+
+| account_id | income |
+|------------|--------|
+| 3          | 108939 |
+| 2          | 12747  |
+| 8          | 87709  |
+| 6          | 91796  |
+
+Output: 
+
+| category       | accounts_count |
+|----------------|----------------|
+| Low Salary     | 1              |
+| Average Salary | 0              |
+| High Salary    | 3              |
+
+Explanation: 
+Low Salary: Account 2.
+Average Salary: No accounts.
+High Salary: Accounts 3, 6, and 8.
 
 **Решение:**
 
 ```SQL
+-- вариант 1
+WITH
+cat AS (
+     SELECT 'Low Salary' AS category
+     UNION
+     SELECT 'Average Salary' AS category
+     UNION
+     SELECT 'High Salary' AS category
+),
+c AS (
+     SELECT account_id
+          , CASE
+               WHEN income < 20000 THEN 'Low Salary'
+               WHEN income > 50000 THEN 'High Salary'
+               ELSE 'Average Salary'
+          END AS category
+     FROM Accounts)
 
+SELECT cat.category
+     , count(account_id) AS accounts_count
+FROM cat
+     LEFT JOIN c ON cat.category=c.category
+GROUP BY category;
+
+
+-- вариант 2
+SELECT 'Low Salary' AS category
+     , COUNT(account_id) AS accounts_count
+FROM Accounts
+WHERE income < 20000
+UNION
+SELECT 'Average Salary' AS category
+     , COUNT(account_id) AS accounts_count
+FROM Accounts
+WHERE income >= 20000
+  AND income <= 50000
+  UNION
+SELECT 'High Salary' AS category
+     , COUNT(account_id) AS accounts_count
+FROM Accounts
+WHERE income > 50000;
 ```
+
+
+
+## Subqueries
 
 
 ### Задача 37
 
-****
+**1978. Employees Whose Manager Left the Company**
 
+Table: Employees
+
+| Column Name | Type     |
+|-------------|----------|
+| employee_id | int      |
+| name        | varchar  |
+| manager_id  | int      |
+| salary      | int      |
+
+In SQL, employee_id is the primary key for this table.
+This table contains information about the employees, their salary, and the ID of their manager. Some employees do not have a manager (manager_id is null). 
+
+Find the IDs of the employees whose salary is strictly less than $30000 and whose manager left the company. When a manager leaves the company, their information is deleted from the Employees table, but the reports still have their manager_id set to the manager that left.
+
+Return the result table ordered by employee_id.
+
+The result format is in the following example.
+
+Example 1:
+
+Input:  
+Employees table:
+
+| employee_id | name      | manager_id | salary |
+|-------------|-----------|------------|--------|
+| 3           | Mila      | 9          | 60301  |
+| 12          | Antonella | null       | 31000  |
+| 13          | Emery     | null       | 67084  |
+| 1           | Kalel     | 11         | 21241  |
+| 9           | Mikaela   | null       | 50937  |
+| 11          | Joziah    | 6          | 28485  |
+
+Output: 
+
+| employee_id |
+|-------------|
+| 11          |
+
+Explanation: 
+The employees with a salary less than $30000 are 1 (Kalel) and 11 (Joziah).
+Kalel's manager is employee 11, who is still in the company (Joziah).
+Joziah's manager is employee 6, who left the company because there is no row for employee 6 as it was deleted.
 
 **Решение:**
 
 ```SQL
+WITH
+t AS (
+     SELECT employee_id
+          , manager_id
+     FROM Employees
+     WHERE salary < 30000
+     AND manager_id IS NOT NULL
+)
 
+SELECT t.employee_id
+FROM t
+     LEFT JOIN Employees AS e ON t.manager_id=e.employee_id
+WHERE e.employee_id IS NULL
+ORDER BY t.employee_id;
 ```
 
 
 ### Задача 38
 
-****
+**626. Exchange Seats**
 
+Table: Seat
+
+| Column Name | Type    |
+|-------------|---------|
+| id          | int     |
+| student     | varchar |
+
+id is the primary key (unique value) column for this table.
+Each row of this table indicates the name and the ID of a student.
+id is a continuous increment.
+
+Write a solution to swap the seat id of every two consecutive students. If the number of students is odd, the id of the last student is not swapped.
+
+Return the result table ordered by id in ascending order.
+
+The result format is in the following example.
+
+Example 1:
+
+Input: 
+Seat table:
+
+| id | student |
+|----|---------|
+| 1  | Abbot   |
+| 2  | Doris   |
+| 3  | Emerson |
+| 4  | Green   |
+| 5  | Jeames  |
+
+Output: 
+
+| id | student |
+|----|---------|
+| 1  | Doris   |
+| 2  | Abbot   |
+| 3  | Green   |
+| 4  | Emerson |
+| 5  | Jeames  |
+
+Explanation: 
+Note that if the number of students is odd, there is no need to change the last one's seat.
 
 **Решение:**
 
 ```SQL
-
+SELECT id
+     , CASE
+          WHEN id % 2 = 0 THEN LAG(student) OVER()
+          WHEN LEAD(student) OVER() IS NULL THEN student
+          ELSE LEAD(student) OVER()
+       END AS student
+FROM Seat;
 ```
 
 
 ### Задача 39
 
-****
+**1341. Movie Rating**
 
+Table: Movies
+
+| Column Name   | Type    |
+|---------------|---------|
+| movie_id      | int     |
+| title         | varchar |
+
+movie_id is the primary key (column with unique values) for this table.
+title is the name of the movie.
+
+Table: Users
+
+| Column Name   | Type    |
+|---------------|---------|
+| user_id       | int     |
+| name          | varchar |
+
+user_id is the primary key (column with unique values) for this table.
+
+Table: MovieRating
+
+| Column Name   | Type    |
+|---------------|---------|
+| movie_id      | int     |
+| user_id       | int     |
+| rating        | int     |
+| created_at    | date    |
+
+(movie_id, user_id) is the primary key (column with unique values) for this table.
+This table contains the rating of a movie by a user in their review.
+created_at is the user's review date. 
+
+Write a solution to:
+
+Find the name of the user who has rated the greatest number of movies. In case of a tie, return the lexicographically smaller user name.
+Find the movie name with the highest average rating in February 2020. In case of a tie, return the lexicographically smaller movie name.
+The result format is in the following example.
+
+Example 1:
+
+Input: 
+Movies table:
+
+| movie_id    |  title       |
+|-------------|--------------|
+| 1           | Avengers     |
+| 2           | Frozen 2     |
+| 3           | Joker        |
+
+Users table:
+
+| user_id     |  name        |
+|-------------|--------------|
+| 1           | Daniel       |
+| 2           | Monica       |
+| 3           | Maria        |
+| 4           | James        |
+
+MovieRating table:
+
+| movie_id    | user_id      | rating       | created_at  |
+|-------------|--------------|--------------|-------------|
+| 1           | 1            | 3            | 2020-01-12  |
+| 1           | 2            | 4            | 2020-02-11  |
+| 1           | 3            | 2            | 2020-02-12  |
+| 1           | 4            | 1            | 2020-01-01  |
+| 2           | 1            | 5            | 2020-02-17  | 
+| 2           | 2            | 2            | 2020-02-01  | 
+| 2           | 3            | 2            | 2020-03-01  |
+| 3           | 1            | 3            | 2020-02-22  | 
+| 3           | 2            | 4            | 2020-02-25  | 
+
+Output: 
+
+| results      |
+|--------------|
+| Daniel       |
+| Frozen 2     |
+
+Explanation: 
+Daniel and Monica have rated 3 movies ("Avengers", "Frozen 2" and "Joker") but Daniel is smaller lexicographically.
+Frozen 2 and Joker have a rating average of 3.5 in February but Frozen 2 is smaller lexicographically.
 
 **Решение:**
 
 ```SQL
-
+(SELECT name AS results
+FROM MovieRating AS r
+     JOIN Users AS u ON r.user_id=u.user_id
+GROUP BY r.user_id
+ORDER BY count(movie_id) DESC, name
+LIMIT 1)
+UNION ALL
+(SELECT title AS results
+FROM MovieRating AS r
+     JOIN Movies AS m ON r.movie_id=m.movie_id
+WHERE EXTRACT(YEAR_MONTH FROM created_at) = 202002
+GROUP BY r.movie_id
+ORDER BY AVG(rating) DESC, title
+LIMIT 1);
 ```
 
 
 ### Задача 40
 
-****
+**1321. Restaurant Growth**
 
+Table: Customer
+
+| Column Name   | Type    |
+|---------------|---------|
+| customer_id   | int     |
+| name          | varchar |
+| visited_on    | date    |
+| amount        | int     |
+
+In SQL,(customer_id, visited_on) is the primary key for this table.
+This table contains data about customer transactions in a restaurant.
+visited_on is the date on which the customer with ID (customer_id) has visited the restaurant.
+amount is the total paid by a customer.
+
+You are the restaurant owner and you want to analyze a possible expansion (there will be at least one customer every day).
+
+Compute the moving average of how much the customer paid in a seven days window (i.e., current day + 6 days before). average_amount should be rounded to two decimal places.
+
+Return the result table ordered by visited_on in ascending order.
+
+The result format is in the following example.
+
+Example 1:
+
+Input: 
+Customer table:
+
+| customer_id | name         | visited_on   | amount      |
+|-------------|--------------|--------------|-------------|
+| 1           | Jhon         | 2019-01-01   | 100         |
+| 2           | Daniel       | 2019-01-02   | 110         |
+| 3           | Jade         | 2019-01-03   | 120         |
+| 4           | Khaled       | 2019-01-04   | 130         |
+| 5           | Winston      | 2019-01-05   | 110         | 
+| 6           | Elvis        | 2019-01-06   | 140         | 
+| 7           | Anna         | 2019-01-07   | 150         |
+| 8           | Maria        | 2019-01-08   | 80          |
+| 9           | Jaze         | 2019-01-09   | 110         | 
+| 1           | Jhon         | 2019-01-10   | 130         | 
+| 3           | Jade         | 2019-01-10   | 150         | 
+
+Output: 
+
+| visited_on   | amount       | average_amount |
+|--------------|--------------|----------------|
+| 2019-01-07   | 860          | 122.86         |
+| 2019-01-08   | 840          | 120            |
+| 2019-01-09   | 840          | 120            |
+| 2019-01-10   | 1000         | 142.86         |
+
+Explanation: 
+1st moving average from 2019-01-01 to 2019-01-07 has an average_amount of (100 + 110 + 120 + 130 + 110 + 140 + 150)/7 = 122.86
+2nd moving average from 2019-01-02 to 2019-01-08 has an average_amount of (110 + 120 + 130 + 110 + 140 + 150 + 80)/7 = 120
+3rd moving average from 2019-01-03 to 2019-01-09 has an average_amount of (120 + 130 + 110 + 140 + 150 + 80 + 110)/7 = 120
+4th moving average from 2019-01-04 to 2019-01-10 has an average_amount of (130 + 110 + 140 + 150 + 80 + 110 + 130 + 150)/7 = 142.86
 
 **Решение:**
 
 ```SQL
-
+SELECT c.visited_on
+     , (SELECT SUM(t.amount)
+        FROM Customer AS t
+        WHERE visited_on BETWEEN DATE_SUB(c.visited_on, INTERVAL 6 DAY) AND c.visited_on) AS amount
+     , ROUND((SELECT SUM(t.amount)
+              FROM Customer AS t
+              WHERE visited_on BETWEEN DATE_SUB(c.visited_on, INTERVAL 6 DAY) AND c.visited_on) 
+             / 7, 2) AS average_amount
+FROM Customer AS c
+WHERE c.visited_on >= DATE_ADD((SELECT MIN(visited_on) FROM Customer), INTERVAL 6 DAY)
+GROUP BY visited_on;
 ```
 
 
