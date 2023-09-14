@@ -1,10 +1,72 @@
-# Решение задач ['SQL 50'](https://leetcode.com/studyplan/top-sql-50/) на LeetCode
+﻿# Решение задач ['SQL 50'](https://leetcode.com/studyplan/top-sql-50/) на LeetCode
 
 
-## Select
+**Оглавление**
+
+- [Решение задач 'SQL 50' на LeetCode](#решение-задач-sql-50-на-leetcode)
+  - [Select](#select)
+    - [Задача 1](#задача-1)
+    - [Задача 2](#задача-2)
+    - [Задача 3](#задача-3)
+    - [Задача 4](#задача-4)
+    - [Задача 5](#задача-5)
+  - [Basic Joins](#basic-joins)
+    - [Задача 6](#задача-6)
+    - [Задача 7](#задача-7)
+    - [Задача 8](#задача-8)
+    - [Задача 9](#задача-9)
+    - [Задача 10](#задача-10)
+    - [Задача 11](#задача-11)
+    - [Задача 12](#задача-12)
+    - [Задача 13](#задача-13)
+    - [Задача 14](#задача-14)
+  - [Basic Aggregate Functions](#basic-aggregate-functions)
+    - [Задача 15](#задача-15)
+    - [Задача 16](#задача-16)
+    - [Задача 17](#задача-17)
+    - [Задача 18](#задача-18)
+    - [Задача 19](#задача-19)
+    - [Задача 20](#задача-20)
+    - [Задача 21](#задача-21)
+    - [Задача 22](#задача-22)
+  - [Sorting and Grouping](#sorting-and-grouping)
+    - [Задача 23](#задача-23)
+    - [Задача 24](#задача-24)
+    - [Задача 25](#задача-25)
+    - [Задача 26](#задача-26)
+    - [Задача 27](#задача-27)
+    - [Задача 28](#задача-28)
+    - [Задача 29](#задача-29)
+  - [Advanced Select and Joins](#advanced-select-and-joins)
+    - [Задача 30](#задача-30)
+    - [Задача 31](#задача-31)
+    - [Задача 32](#задача-32)
+    - [Задача 33](#задача-33)
+    - [Задача 34](#задача-34)
+    - [Задача 35](#задача-35)
+    - [Задача 36](#задача-36)
+  - [Subqueries](#subqueries)
+    - [Задача 37](#задача-37)
+    - [Задача 38](#задача-38)
+    - [Задача 39](#задача-39)
+    - [Задача 40](#задача-40)
+    - [Задача 41](#задача-41)
+    - [Задача 42](#задача-42)
+    - [Задача 43](#задача-43)
+  - [Advanced String Functions / Regex / Clause](#advanced-string-functions--regex--clause)
+    - [Задача 44](#задача-44)
+    - [Задача 45](#задача-45)
+    - [Задача 46](#задача-46)
+    - [Задача 47](#задача-47)
+    - [Задача 48](#задача-48)
+    - [Задача 49](#задача-49)
+    - [Задача 50](#задача-50)
 
 
-### Задача 1
+## [Select](#решение-задач-sql-50-на-leetcode)
+
+
+### [Задача 1](#решение-задач-sql-50-на-leetcode)
 
 **1757. Recyclable and Low Fat Products**
 
@@ -60,7 +122,7 @@ WHERE low_fats = 'Y'
 ```
 
 
-### Задача 2
+### [Задача 2](#решение-задач-sql-50-на-leetcode)
 
 **584. Find Customer Referee**
 
@@ -115,7 +177,7 @@ WHERE referee_id != 2
 ```
 
 
-### Задача 3
+### [Задача 3](#решение-задач-sql-50-на-leetcode)
 
 **595. Big Countries**
 
@@ -173,7 +235,7 @@ WHERE area >= 3000000
 ```
 
 
-### Задача 4
+### [Задача 4](#решение-задач-sql-50-на-leetcode)
 
 **1148. Article Views I**
 
@@ -230,7 +292,7 @@ ORDER BY id;
 ```
 
 
-### Задача 5
+### [Задача 5](#решение-задач-sql-50-на-leetcode)
 
 **1683. Invalid Tweets**
 
@@ -280,10 +342,10 @@ WHERE LENGTH(content) > 15;
 ```
 
 
-## Basic Joins
+## [Basic Joins](#решение-задач-sql-50-на-leetcode)
 
 
-### Задача 6
+### [Задача 6](#решение-задач-sql-50-на-leetcode)
 
 **1378. Replace Employee ID With The Unique Identifier**
 
@@ -361,7 +423,7 @@ LEFT JOIN EmployeeUNI AS eu ON e.id = eu.id;
 ```
 
 
-### Задача 7
+### [Задача 7](#решение-задач-sql-50-на-leetcode)
 
 **1068. Product Sales Analysis I**
 
@@ -438,7 +500,7 @@ FROM Sales AS s
 ```
 
 
-### Задача 8
+### [Задача 8](#решение-задач-sql-50-на-leetcode)
 
 **1581. Customer Who Visited but Did Not Make Any Transactions**
 
@@ -523,7 +585,7 @@ GROUP BY customer_id;
 ```
 
 
-### Задача 9
+### [Задача 9](#решение-задач-sql-50-на-leetcode)
 
 **197. Rising Temperature**
 
@@ -583,7 +645,7 @@ WHERE (temperature - temp_prev) > 0
 ```
 
 
-### Задача 10
+### [Задача 10](#решение-задач-sql-50-на-leetcode)
 
 **1661. Average Time of Process per Machine**
 
@@ -672,7 +734,7 @@ GROUP BY a1.machine_id;
 ```
 
 
-### Задача 11
+### [Задача 11](#решение-задач-sql-50-на-leetcode)
 
 **577. Employee Bonus**
 
@@ -744,7 +806,7 @@ WHERE bonus < 1000
 ```
 
 
-### Задача 12
+### [Задача 12](#решение-задач-sql-50-на-leetcode)
 
 **1280. Students and Examinations**
 
@@ -870,7 +932,7 @@ ORDER BY st.student_id, s.subject_name;
 ```
 
 
-### Задача 13
+### [Задача 13](#решение-задач-sql-50-на-leetcode)
 
 **570. Managers with at Least 5 Direct Reports**
 
@@ -930,7 +992,7 @@ FROM (
 ```
 
 
-### Задача 14
+### [Задача 14](#решение-задач-sql-50-на-leetcode)
 
 **1934. Confirmation Rate**
 
@@ -1034,10 +1096,10 @@ FROM Signups AS sig
 
 
 
-## Basic Aggregate Functions
+## [Basic Aggregate Functions](#решение-задач-sql-50-на-leetcode)
 
 
-### Задача 15
+### [Задача 15](#решение-задач-sql-50-на-leetcode)
 
 **620. Not Boring Movies**
 
@@ -1094,7 +1156,7 @@ ORDER BY rating DESC;
 ```
 
 
-### Задача 16
+### [Задача 16](#решение-задач-sql-50-на-leetcode)
 
 **1251. Average Selling Price**
 
@@ -1179,7 +1241,7 @@ GROUP BY product_id;
 ```
 
 
-### Задача 17
+### [Задача 17](#решение-задач-sql-50-на-leetcode)
 
 **1075. Project Employees I**
 
@@ -1253,7 +1315,7 @@ GROUP BY project_id;
 ```
 
 
-### Задача 18
+### [Задача 18](#решение-задач-sql-50-на-leetcode)
 
 **1633. Percentage of Users Attended a Contest**
 
@@ -1337,7 +1399,7 @@ ORDER BY percentage DESC, contest_id;
 ```
 
 
-### Задача 19
+### [Задача 19](#решение-задач-sql-50-на-leetcode)
 
 **1211. Queries Quality and Percentage**
 
@@ -1422,7 +1484,7 @@ GROUP BY query_name;
 ```
 
 
-### Задача 20
+### [Задача 20](#решение-задач-sql-50-на-leetcode)
 
 **1193. Monthly Transactions I**
 
@@ -1505,7 +1567,7 @@ FROM t
 ```
 
 
-### Задача 21
+### [Задача 21](#решение-задач-sql-50-на-leetcode)
 
 **1174. Immediate Food Delivery II**
 
@@ -1571,7 +1633,7 @@ WHERE order_date=first_date
 ```
 
 
-### Задача 22
+### [Задача 22](#решение-задач-sql-50-на-leetcode)
 
 **550. Game Play Analysis IV**
 
@@ -1636,10 +1698,10 @@ FROM (SELECT  player_id,
 
 
 
-## Sorting and Grouping
+## [Sorting and Grouping](#решение-задач-sql-50-на-leetcode)
 
 
-### Задача 23
+### [Задача 23](#решение-задач-sql-50-на-leetcode)
 
 **2356. Number of Unique Subjects Taught by Each Teacher**
 
@@ -1702,7 +1764,7 @@ GROUP BY teacher_id;
 ```
 
 
-### Задача 24
+### [Задача 24](#решение-задач-sql-50-на-leetcode)
 
 **1141. User Activity for the Past 30 Days I**
 
@@ -1766,7 +1828,7 @@ GROUP BY activity_date;
 ```
 
 
-### Задача 25
+### [Задача 25](#решение-задач-sql-50-на-leetcode)
 
 **1070. Product Sales Analysis III**
 
@@ -1844,7 +1906,7 @@ WHERE year = first_year;
 ```
 
 
-### Задача 26
+### [Задача 26](#решение-задач-sql-50-на-leetcode)
 
 **596. Classes More Than 5 Students**
 
@@ -1903,7 +1965,7 @@ HAVING COUNT(student) >= 5;
 ```
 
 
-### Задача 27
+### [Задача 27](#решение-задач-sql-50-на-leetcode)
 
 **1729. Find Followers Count**
 
@@ -1959,7 +2021,7 @@ ORDER BY user_id;
 ```
 
 
-### Задача 28
+### [Задача 28](#решение-задач-sql-50-на-leetcode)
 
 **619. Biggest Single Number**
 
@@ -2036,7 +2098,7 @@ FROM (SELECT  num
 ```
 
 
-### Задача 29
+### [Задача 29](#решение-задач-sql-50-на-leetcode)
 
 **1045. Customers Who Bought All Products**
 
@@ -2128,10 +2190,10 @@ WHERE customer_id NOT IN(SELECT DISTINCT t1.customer_id
 ```
 
 
-## Advanced Select and Joins
+## [Advanced Select and Joins](#решение-задач-sql-50-на-leetcode)
 
 
-### Задача 30
+### [Задача 30](#решение-задач-sql-50-на-leetcode)
 
 **1731. The Number of Employees Which Report to Each Employee**
 
@@ -2198,7 +2260,7 @@ ORDER BY t1.employee_id;
 ```
 
 
-### Задача 31
+### [Задача 31](#решение-задач-sql-50-на-leetcode)
 
 **1789. Primary Department for Each Employee**
 
@@ -2287,7 +2349,7 @@ WHERE primary_flag = 'Y';
 ```
 
 
-### Задача 32
+### [Задача 32](#решение-задач-sql-50-на-leetcode)
 
 **610. Triangle Judgement**
 
@@ -2347,7 +2409,7 @@ FROM Triangle
 ```
 
 
-### Задача 33
+### [Задача 33](#решение-задач-sql-50-на-leetcode)
 
 **180. Consecutive Numbers**
 
@@ -2403,7 +2465,7 @@ WHERE num2 = num
 ```
 
 
-### Задача 34
+### [Задача 34](#решение-задач-sql-50-на-leetcode)
 
 **1164. Product Price at a Given Date**
 
@@ -2486,7 +2548,7 @@ WHERE change_date = last_change
 ```
 
 
-### Задача 35
+### [Задача 35](#решение-задач-sql-50-на-leetcode)
 
 **1204. Last Person to Fit in the Bus**
 
@@ -2557,7 +2619,7 @@ LIMIT 1;
 ```
 
 
-### Задача 36
+### [Задача 36](#решение-задач-sql-50-на-leetcode)
 
 **1907. Count Salary Categories**
 
@@ -2655,10 +2717,10 @@ WHERE income > 50000;
 
 
 
-## Subqueries
+## [Subqueries](#решение-задач-sql-50-на-leetcode)
 
 
-### Задача 37
+### [Задача 37](#решение-задач-sql-50-на-leetcode)
 
 **1978. Employees Whose Manager Left the Company**
 
@@ -2725,7 +2787,7 @@ ORDER BY t.employee_id;
 ```
 
 
-### Задача 38
+### [Задача 38](#решение-задач-sql-50-на-leetcode)
 
 **626. Exchange Seats**
 
@@ -2785,7 +2847,7 @@ FROM Seat;
 ```
 
 
-### Задача 39
+### [Задача 39](#решение-задач-sql-50-на-leetcode)
 
 **1341. Movie Rating**
 
@@ -2892,7 +2954,7 @@ LIMIT 1);
 ```
 
 
-### Задача 40
+### [Задача 40](#решение-задач-sql-50-на-leetcode)
 
 **1321. Restaurant Growth**
 
@@ -2955,6 +3017,7 @@ Explanation:
 **Решение:**
 
 ```SQL
+-- вариант 1
 SELECT c.visited_on
      , (SELECT SUM(t.amount)
         FROM Customer AS t
@@ -2966,124 +3029,733 @@ SELECT c.visited_on
 FROM Customer AS c
 WHERE c.visited_on >= DATE_ADD((SELECT MIN(visited_on) FROM Customer), INTERVAL 6 DAY)
 GROUP BY visited_on;
+
+-- вариант 2
+SELECT *
+     , ROUND(amount / 7, 2) AS average_amount
+FROM (
+      SELECT visited_on
+           , SUM(amount) OVER(ORDER BY visited_on RANGE BETWEEN INTERVAL 6 DAY PRECEDING AND CURRENT ROW) AS amount
+      FROM (
+           SELECT visited_on
+                , SUM(amount) AS amount
+           FROM Customer
+           GROUP BY visited_on
+           ) AS temp
+     ) AS temp2
+WHERE visited_on >= DATE_ADD((SELECT MIN(visited_on) FROM Customer), INTERVAL 6 DAY);
 ```
 
 
-### Задача 41
+### [Задача 41](#решение-задач-sql-50-на-leetcode)
 
-****
+**602. Friend Requests II: Who Has the Most Friends**
 
+Table: RequestAccepted
+
+| Column Name    | Type    |
+|----------------|---------|
+| requester_id   | int     |
+| accepter_id    | int     |
+| accept_date    | date    |
+
+(requester_id, accepter_id) is the primary key (combination of columns with unique values) for this table.
+This table contains the ID of the user who sent the request, the ID of the user who received the request, and the date when the request was accepted.
+
+Write a solution to find the people who have the most friends and the most friends number.
+
+The test cases are generated so that only one person has the most friends.
+
+The result format is in the following example.
+
+Example 1:
+
+Input: 
+RequestAccepted table:
+
+| requester_id | accepter_id | accept_date |
+|--------------|-------------|-------------|
+| 1            | 2           | 2016/06/03  |
+| 1            | 3           | 2016/06/08  |
+| 2            | 3           | 2016/06/08  |
+| 3            | 4           | 2016/06/09  |
+
+Output: 
+
+| id | num |
+|----|-----|
+| 3  | 3   |
+
+Explanation: 
+The person with id 3 is a friend of people 1, 2, and 4, so he has three friends in total, which is the most number than any others.
 
 **Решение:**
 
 ```SQL
-
+SELECT id
+     , SUM(num) AS num
+FROM (
+     SELECT requester_id AS id
+          , COUNT(accepter_id) AS num
+     FROM RequestAccepted
+     GROUP BY requester_id
+     UNION ALL
+     SELECT accepter_id AS id
+          , COUNT(requester_id) AS num
+     FROM RequestAccepted
+     GROUP BY accepter_id
+     ) AS temp
+GROUP BY id
+ORDER BY num DESC
+LIMIT 1;
 ```
 
-
-### Задача 42
-
-****
-
+Follow up: In the real world, multiple people could have the same most number of friends. Could you find all these people in this case?
 
 **Решение:**
 
 ```SQL
+WITH
+t AS(
+     SELECT id
+          , SUM(num) AS num
+     FROM (
+          SELECT requester_id AS id
+               , COUNT(accepter_id) AS num
+          FROM RequestAccepted
+          GROUP BY requester_id
+          UNION ALL
+          SELECT accepter_id AS id
+               , COUNT(requester_id) AS num
+          FROM RequestAccepted
+          GROUP BY accepter_id
+          ) AS temp
+     GROUP BY id
+     )
 
+SELECT *
+FROM t
+WHERE num = (SELECT MAX(num) FROM t);
 ```
 
 
-### Задача 43
+### [Задача 42](#решение-задач-sql-50-на-leetcode)
 
-****
+**585. Investments in 2016**
 
+Table: Insurance
+
+| Column Name | Type  |
+|-------------|-------|
+| pid         | int   |
+| tiv_2015    | float |
+| tiv_2016    | float |
+| lat         | float |
+| lon         | float |
+
+pid is the primary key (column with unique values) for this table.
+Each row of this table contains information about one policy where:
+pid is the policyholder's policy ID.
+tiv_2015 is the total investment value in 2015 and tiv_2016 is the total investment value in 2016.
+lat is the latitude of the policy holder's city. It's guaranteed that lat is not NULL.
+lon is the longitude of the policy holder's city. It's guaranteed that lon is not NULL.
+
+Write a solution to report the sum of all total investment values in 2016 tiv_2016, for all policyholders who:
+
+have the same tiv_2015 value as one or more other policyholders, and
+are not located in the same city as any other policyholder (i.e., the (lat, lon) attribute pairs must be unique).
+Round tiv_2016 to two decimal places.
+
+The result format is in the following example.
+
+Example 1:
+
+Input: 
+Insurance table:
+
+| pid | tiv_2015 | tiv_2016 | lat | lon |
+|-----|----------|----------|-----|-----|
+| 1   | 10       | 5        | 10  | 10  |
+| 2   | 20       | 20       | 20  | 20  |
+| 3   | 10       | 30       | 20  | 20  |
+| 4   | 10       | 40       | 40  | 40  |
+
+Output: 
+
+| tiv_2016 |
+|----------|
+| 45.00    |
+
+Explanation: 
+The first record in the table, like the last record, meets both of the two criteria.
+The tiv_2015 value 10 is the same as the third and fourth records, and its location is unique.
+
+The second record does not meet any of the two criteria. Its tiv_2015 is not like any other policyholders and its location is the same as the third record, which makes the third record fail, too.
+So, the result is the sum of tiv_2016 of the first and last record, which is 45.
 
 **Решение:**
 
 ```SQL
+WITH
+t1 AS (
+          SELECT pid
+               , tiv_2016
+          FROM Insurance
+          GROUP BY lat, lon
+          HAVING count(pid) = 1
+      ),
 
+t2 AS (
+          SELECT pid
+               , tiv_2016
+          FROM (
+               SELECT pid
+                    , tiv_2016
+                    , COUNT(pid) OVER(PARTITION BY tiv_2015) AS count
+               FROM Insurance
+               ) AS temp
+          WHERE count > 1
+      )
+
+SELECT ROUND(SUM(t1.tiv_2016), 2) AS tiv_2016
+FROM t1
+     INNER JOIN t2 ON t1.pid=t2.pid;
 ```
 
 
-### Задача 44
+### [Задача 43](#решение-задач-sql-50-на-leetcode)
 
-****
+**185. Department Top Three Salaries**
 
+Table: Employee
+
+| Column Name  | Type    |
+|--------------|---------|
+| id           | int     |
+| name         | varchar |
+| salary       | int     |
+| departmentId | int     |
+
+id is the primary key (column with unique values) for this table.
+departmentId is a foreign key (reference column) of the ID from the Department table.
+Each row of this table indicates the ID, name, and salary of an employee. It also contains the ID of their department.
+
+Table: Department
+
+| Column Name | Type    |
+|-------------|---------|
+| id          | int     |
+| name        | varchar |
+
+id is the primary key (column with unique values) for this table.
+Each row of this table indicates the ID of a department and its name.
+
+A company's executives are interested in seeing who earns the most money in each of the company's departments. A high earner in a department is an employee who has a salary in the top three unique salaries for that department.
+
+Write a solution to find the employees who are high earners in each of the departments.
+
+Return the result table in any order.
+
+The result format is in the following example.
+
+Example 1:
+
+Input: 
+Employee table:
+
+| id | name  | salary | departmentId |
+|----|-------|--------|--------------|
+| 1  | Joe   | 85000  | 1            |
+| 2  | Henry | 80000  | 2            |
+| 3  | Sam   | 60000  | 2            |
+| 4  | Max   | 90000  | 1            |
+| 5  | Janet | 69000  | 1            |
+| 6  | Randy | 85000  | 1            |
+| 7  | Will  | 70000  | 1            |
+
+Department table:
+
+| id | name  |
+|----|-------|
+| 1  | IT    |
+| 2  | Sales |
+
+Output: 
+
+| Department | Employee | Salary |
+|------------|----------|--------|
+| IT         | Max      | 90000  |
+| IT         | Joe      | 85000  |
+| IT         | Randy    | 85000  |
+| IT         | Will     | 70000  |
+| Sales      | Henry    | 80000  |
+| Sales      | Sam      | 60000  |
+
+Explanation: 
+In the IT department:
+- Max earns the highest unique salary
+- Both Randy and Joe earn the second-highest unique salary
+- Will earns the third-highest unique salary
+
+In the Sales department:
+- Henry earns the highest salary
+- Sam earns the second-highest salary
+- There is no third-highest salary as there are only two employees
 
 **Решение:**
 
 ```SQL
-
+SELECT Department, Employee, Salary
+FROM (
+     SELECT d.name AS Department
+          , e.name AS Employee
+          , e.salary AS Salary
+          , DENSE_RANK() OVER(PARTITION BY departmentId ORDER BY salary DESC) AS ran
+     FROM Employee AS e
+          JOIN Department AS d ON e.departmentId=d.id
+     ) AS temp
+WHERE ran <= 3;
 ```
 
 
-### Задача 45
 
-****
+## [Advanced String Functions / Regex / Clause](#решение-задач-sql-50-на-leetcode)
 
+
+### [Задача 44](#решение-задач-sql-50-на-leetcode)
+
+**1667. Fix Names in a Table**
+
+Table: Users
+
+| Column Name    | Type    |
+|----------------|---------|
+| user_id        | int     |
+| name           | varchar |
+
+user_id is the primary key (column with unique values) for this table.
+This table contains the ID and the name of the user. The name consists of only lowercase and uppercase characters.
+
+Write a solution to fix the names so that only the first character is uppercase and the rest are lowercase.
+
+Return the result table ordered by user_id.
+
+The result format is in the following example.
+
+Example 1:
+
+Input: 
+Users table:
+
+| user_id | name  |
+|---------|-------|
+| 1       | aLice |
+| 2       | bOB   |
+
+Output: 
+
+| user_id | name  |
+|---------|-------|
+| 1       | Alice |
+| 2       | Bob   |
 
 **Решение:**
 
 ```SQL
-
+SELECT user_id
+     , CONCAT(UPPER(LEFT(name, 1)), RIGHT(LOWER(name), LENGTH(name)-1)) AS name
+FROM Users
+ORDER BY user_id;
 ```
 
 
-### Задача 46
+### [Задача 45](#решение-задач-sql-50-на-leetcode)
 
-****
+**1527. Patients With a Condition**
 
+Table: Patients
+
+| Column Name  | Type    |
+|--------------|---------|
+| patient_id   | int     |
+| patient_name | varchar |
+| conditions   | varchar |
+
+patient_id is the primary key (column with unique values) for this table.
+'conditions' contains 0 or more code separated by spaces. 
+This table contains information of the patients in the hospital.
+
+Write a solution to find the patient_id, patient_name, and conditions of the patients who have Type I Diabetes. Type I Diabetes always starts with DIAB1 prefix.
+
+Return the result table in any order.
+
+The result format is in the following example.
+
+Example 1:
+
+Input: 
+Patients table:
+
+| patient_id | patient_name | conditions   |
+|------------|--------------|--------------|
+| 1          | Daniel       | YFEV COUGH   |
+| 2          | Alice        |              |
+| 3          | Bob          | DIAB100 MYOP |
+| 4          | George       | ACNE DIAB100 |
+| 5          | Alain        | DIAB201      |
+
+Output: 
+
+| patient_id | patient_name | conditions   |
+|------------|--------------|--------------|
+| 3          | Bob          | DIAB100 MYOP |
+| 4          | George       | ACNE DIAB100 | 
+
+Explanation: Bob and George both have a condition that starts with DIAB1.
 
 **Решение:**
 
 ```SQL
-
+SELECT *
+FROM Patients
+WHERE INSTR(conditions, ' DIAB1') > 0
+   OR LEFT(conditions, 5) = 'DIAB1';
 ```
 
 
-### Задача 47
+### [Задача 46](#решение-задач-sql-50-на-leetcode)
 
-****
+**196. Delete Duplicate Emails**
 
+Table: Person
+
+| Column Name | Type    |
+|-------------|---------|
+| id          | int     |
+| email       | varchar |
+
+id is the primary key (column with unique values) for this table.
+Each row of this table contains an email. The emails will not contain uppercase letters.
+
+Write a solution to delete all duplicate emails, keeping only one unique email with the smallest id.
+
+For SQL users, please note that you are supposed to write a DELETE statement and not a SELECT one.
+
+For Pandas users, please note that you are supposed to modify Person in place.
+
+After running your script, the answer shown is the Person table. The driver will first compile and run your piece of code and then show the Person table. The final order of the Person table does not matter.
+
+The result format is in the following example.
+
+Example 1:
+
+Input: 
+Person table:
+
+| id | email            |
+|----|------------------|
+| 1  | john@example.com |
+| 2  | bob@example.com  |
+| 3  | john@example.com |
+
+Output: 
+
+| id | email            |
+|----|------------------|
+| 1  | john@example.com |
+| 2  | bob@example.com  |
+
+Explanation: john@example.com is repeated two times. We keep the row with the smallest Id = 1.
 
 **Решение:**
 
 ```SQL
-
+DELETE
+FROM Person
+WHERE id IN(SELECT id
+            FROM (SELECT id, ROW_NUMBER() OVER (PARTITION BY email ORDER BY id) AS c FROM Person) AS t
+            WHERE c > 1);
 ```
 
 
-### Задача 48
+### [Задача 47](#решение-задач-sql-50-на-leetcode)
 
-****
+**176. Second Highest Salary**
 
+Table: Employee
+
+| Column Name | Type |
+|-------------|------|
+| id          | int  |
+| salary      | int  |
+
+id is the primary key (column with unique values) for this table.
+Each row of this table contains information about the salary of an employee.
+
+Write a solution to find the second highest salary from the Employee table. If there is no second highest salary, return null (return None in Pandas).
+
+The result format is in the following example.
+
+Example 1:
+
+Input: 
+Employee table:
+
+| id | salary |
+|----|--------|
+| 1  | 100    |
+| 2  | 200    |
+| 3  | 300    |
+
+Output: 
+
+| SecondHighestSalary |
+|---------------------|
+| 200                 |
+
+Example 2:
+
+Input: 
+Employee table:
+
+| id | salary |
+|----|--------|
+| 1  | 100    |
+
+Output: 
+
+| SecondHighestSalary |
+|---------------------|
+| null                |
 
 **Решение:**
 
 ```SQL
+-- вариант 1
+SELECT (
+        SELECT DISTINCT salary AS SecondHighestSalary
+        FROM Employee
+        ORDER BY SecondHighestSalary DESC
+        LIMIT 1 OFFSET 1
+        ) AS SecondHighestSalary;
 
+-- вариант 2
+SELECT MAX(salary) AS SecondHighestSalary 
+FROM Employee 
+WHERE salary < (SELECT MAX(salary) FROM Employee);
 ```
 
 
-### Задача 49
+### [Задача 48](#решение-задач-sql-50-на-leetcode)
 
-****
+**1484. Group Sold Products By The Date**
 
+Table Activities:
+
+| Column Name | Type    |
+|-------------|---------|
+| sell_date   | date    |
+| product     | varchar |
+
+There is no primary key (column with unique values) for this table. It may contain duplicates.
+Each row of this table contains the product name and the date it was sold in a market.
+
+Write a solution to find for each date the number of different products sold and their names.
+
+The sold products names for each date should be sorted lexicographically.
+
+Return the result table ordered by sell_date.
+
+The result format is in the following example.
+
+Example 1:
+
+Input: 
+Activities table:
+
+| sell_date  | product    |
+|------------|------------|
+| 2020-05-30 | Headphone  |
+| 2020-06-01 | Pencil     |
+| 2020-06-02 | Mask       |
+| 2020-05-30 | Basketball |
+| 2020-06-01 | Bible      |
+| 2020-06-02 | Mask       |
+| 2020-05-30 | T-Shirt    |
+
+Output: 
+
+| sell_date  | num_sold | products                     |
+|------------|----------|------------------------------|
+| 2020-05-30 | 3        | Basketball,Headphone,T-shirt |
+| 2020-06-01 | 2        | Bible,Pencil                 |
+| 2020-06-02 | 1        | Mask                         |
+
+Explanation: 
+For 2020-05-30, Sold items were (Headphone, Basketball, T-shirt), we sort them lexicographically and separate them by a comma.
+For 2020-06-01, Sold items were (Pencil, Bible), we sort them lexicographically and separate them by a comma.
+For 2020-06-02, the Sold item is (Mask), we just return it.
 
 **Решение:**
 
 ```SQL
-
+SELECT sell_date
+     , COUNT(product) AS num_sold
+     , GROUP_CONCAT(DISTINCT product ORDER BY product) AS products
+FROM (SELECT DISTINCT * FROM Activities) AS u
+GROUP BY sell_date
+ORDER BY sell_date;
 ```
 
 
-### Задача 50
+### [Задача 49](#решение-задач-sql-50-на-leetcode)
 
-****
+**1327. List the Products Ordered in a Period**
 
+Table: Products
+
+| Column Name      | Type    |
+|------------------|---------|
+| product_id       | int     |
+| product_name     | varchar |
+| product_category | varchar |
+
+product_id is the primary key (column with unique values) for this table.
+This table contains data about the company's products.
+
+Table: Orders
+
+| Column Name   | Type    |
+|---------------|---------|
+| product_id    | int     |
+| order_date    | date    |
+| unit          | int     |
+
+This table may have duplicate rows.
+product_id is a foreign key (reference column) to the Products table.
+unit is the number of products ordered in order_date.
+
+Write a solution to get the names of products that have at least 100 units ordered in February 2020 and their amount.
+
+Return the result table in any order.
+
+The result format is in the following example.
+
+Example 1:
+
+Input: 
+Products table:
+
+| product_id  | product_name          | product_category |
+|-------------|-----------------------|------------------|
+| 1           | Leetcode Solutions    | Book             |
+| 2           | Jewels of Stringology | Book             |
+| 3           | HP                    | Laptop           |
+| 4           | Lenovo                | Laptop           |
+| 5           | Leetcode Kit          | T-shirt          |
+
+Orders table:
+
+| product_id   | order_date   | unit     |
+|--------------|--------------|----------|
+| 1            | 2020-02-05   | 60       |
+| 1            | 2020-02-10   | 70       |
+| 2            | 2020-01-18   | 30       |
+| 2            | 2020-02-11   | 80       |
+| 3            | 2020-02-17   | 2        |
+| 3            | 2020-02-24   | 3        |
+| 4            | 2020-03-01   | 20       |
+| 4            | 2020-03-04   | 30       |
+| 4            | 2020-03-04   | 60       |
+| 5            | 2020-02-25   | 50       |
+| 5            | 2020-02-27   | 50       |
+| 5            | 2020-03-01   | 50       |
+
+Output: 
+
+| product_name       | unit    |
+|--------------------|---------|
+| Leetcode Solutions | 130     |
+| Leetcode Kit       | 100     |
+
+Explanation: 
+Products with product_id = 1 is ordered in February a total of (60 + 70) = 130.
+Products with product_id = 2 is ordered in February a total of 80.
+Products with product_id = 3 is ordered in February a total of (2 + 3) = 5.
+Products with product_id = 4 was not ordered in February 2020.
+Products with product_id = 5 is ordered in February a total of (50 + 50) = 100.
 
 **Решение:**
 
 ```SQL
+SELECT product_name
+     , SUM(unit) AS unit
+FROM Orders AS o
+    JOIN Products AS p ON o.product_id=p.product_id
+WHERE EXTRACT(YEAR_MONTH FROM order_date) = '202002'
+GROUP BY o.product_id
+HAVING SUM(unit) >= 100;
+```
 
+
+### [Задача 50](#решение-задач-sql-50-на-leetcode)
+
+**1517. Find Users With Valid E-Mails**
+
+Table: Users
+
+| Column Name   | Type    |
+|---------------|---------|
+| user_id       | int     |
+| name          | varchar |
+| mail          | varchar |
+
+user_id is the primary key (column with unique values) for this table.
+This table contains information of the users signed up in a website. Some e-mails are invalid.
+
+Write a solution to find the users who have valid emails.
+
+A valid e-mail has a prefix name and a domain where:
+
+The prefix name is a string that may contain letters (upper or lower case), digits, underscore '_', period '.', and/or dash '-'. The prefix name must start with a letter.
+The domain is '@leetcode.com'.
+Return the result table in any order.
+
+The result format is in the following example.
+
+Example 1:
+
+Input: 
+Users table:
+
+| user_id | name      | mail                    |
+|---------|-----------|-------------------------|
+| 1       | Winston   | winston@leetcode.com    |
+| 2       | Jonathan  | jonathanisgreat         |
+| 3       | Annabelle | bella-@leetcode.com     |
+| 4       | Sally     | sally.come@leetcode.com |
+| 5       | Marwan    | quarz#2020@leetcode.com |
+| 6       | David     | david69@gmail.com       |
+| 7       | Shapiro   | .shapo@leetcode.com     |
+
+Output: 
+
+| user_id | name      | mail                    |
+|---------|-----------|-------------------------|
+| 1       | Winston   | winston@leetcode.com    |
+| 3       | Annabelle | bella-@leetcode.com     |
+| 4       | Sally     | sally.come@leetcode.com |
+
+Explanation: 
+The mail of user 2 does not have a domain.
+The mail of user 5 has the # sign which is not allowed.
+The mail of user 6 does not have the leetcode domain.
+The mail of user 7 starts with a period.
+
+**Решение:**
+
+```SQL
+SELECT *
+FROM Users
+WHERE REGEXP_LIKE(mail, '^[a-zA-Z][a-zA-Z0-9_.-]*@leetcode\\.com$') = 1;
 ```
